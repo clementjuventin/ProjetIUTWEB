@@ -29,6 +29,10 @@ try{
 	case "signIn":
 		SignIn($_POST['login'],$_POST['password']);
 		break;
+
+	case "addTask":
+	    AddTask('clem');//Recouvrer le login
+	    break;
 	default:
 		echo "pas d action";
 	break;
@@ -65,6 +69,12 @@ function SignIn($login,$password) {
 	}else{
 		Reinit();
 	}
+}
+function AddTask($user) {
+    require (__DIR__.'/../vues/head.php');
+    require (__DIR__.'/../vues/header.php');
+    require (__DIR__.'/../vues/addTask.php');
+    require (__DIR__.'/../vues/footer.php');
 }
 
 function displayInterface($user){

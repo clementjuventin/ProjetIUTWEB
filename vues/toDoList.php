@@ -1,6 +1,39 @@
+<style>
+    .hiddenButton button{
+        visibility: hidden;
+    }
+    .hiddenButton {
+
+    }
+    .table tbody tr:hover .hiddenButton button{
+        visibility: visible;
+    }
+    div{
+        line-height: 3;
+    }
+</style>
 <div class="container">
-    <h1 style="text-align: center;">To do list du 21 Novembre 2020</h1>
-    <div style="position:relative; width: 100%; max-height: 500px;">
+    <div style="text-align: center; padding: 10px; display: flex;">
+        <h3 style="padding: 10px">Todo liste du </h3>
+        <form class="form-inline">
+            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                <option value="01">Janvier</option>
+                <option value="02">Février</option>
+                <option value="03">Mars</option>
+            </select>
+            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+            </select>
+        </form>
+    </div>
+    <div style="width: 100%;">
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -8,6 +41,7 @@
                     <th scope="col">Tâche</th>
                     <th scope="col">Commentaire</th>
                     <th scope="col">Heure</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -19,8 +53,8 @@
             </tbody>
         </table>
     </div>
-    <button type="button" class="btn btn-secondary btn-lg btn-block">Block level button</button>
-    <button type="button" class="btn btn-danger" style="width: 2.5em"><i class="fas fa-times"></i></button>
-    <button type="button" class="btn btn-success" style="width: 2.5em"><i class="fas fa-check"></i></button>
-    <button type="button" class="btn btn-primary" style="width: 2.5em"><i class="fas fa-cog"></i></button>
+    <form>
+        <button type="submit" class="btn btn-secondary btn-lg btn-block">Ajouter une tâche</button>
+        <input type="hidden" name="action" value="addTask">
+    </form>
 </div>

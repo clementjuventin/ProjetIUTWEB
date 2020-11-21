@@ -123,11 +123,17 @@ class Task
 
     public function __toString()
     {
+        $settings = '
+                   <button type="button" class="btn btn-danger" style="width: 2.5em"><i class="fas fa-times"></i></button>
+                   <button type="button" class="btn btn-success" style="width: 2.5em"><i class="fas fa-check"></i></button>
+                   <button type="button" class="btn btn-primary" style="width: 2.5em"><i class="fas fa-cog"></i></button>
+        ';
         return '<tr>
                     <th scope="row">'.$this->getId().'</th>
                     <td>'.$this->getTitre().'</td>
                     <td>'.$this->getDescription().'</td>
-                    <td>@'.$this->getDate().'</td>
+                    <td>'.$this->getDate().'</td>
+                    <td class="hiddenButton">'.$settings.'</td>
                 </tr>
                 ';
     }
