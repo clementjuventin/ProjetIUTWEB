@@ -25,14 +25,15 @@ try{
 	case NULL:
 		Reinit();
 		break;
-
 	case "signIn":
 		SignIn($_POST['login'],$_POST['password']);
 		break;
-
 	case "addTask":
 	    AddTask('clem');//Recouvrer le login
 	    break;
+	case "addTaskSubmit":
+        PushTask('clem');//Recouvrer le login
+        break;
 	default:
 		echo "pas d action";
 	break;
@@ -76,7 +77,16 @@ function AddTask($user) {
     require (__DIR__.'/../vues/addTask.php');
     require (__DIR__.'/../vues/footer.php');
 }
+function PushTask($user) {
+    global $gtw;
+    global $action;
+    $action=NULL;
 
+    $task = new Task($_POST['title'],$_POST['comment'],$user,date('Y-m-d h:i',mktime($_POST['hour'], $_POST['min'], 0, $_POST['month'], $_POST['day'], $_POST['year'])),$_POST['color'],12);
+    $gtw->pushTask($task);
+
+    displayInterface($user);
+}
 function displayInterface($user){
 	global $gtw;
 	$task = $gtw->buildTaskForUser($user);

@@ -15,15 +15,21 @@ class Task
      * @param $titre
      * @param $description
      * @param $user
+     * @param $date
+     * @param $heure
+     * @param $color
      * @param $id
      */
-    public function __construct($titre, $description, $user, $id)
+    public function __construct($titre, $description, $user, $date, $color, $id)
     {
         $this->titre = $titre;
         $this->description = $description;
         $this->user = $user;
+        $this->date = $date;
+        $this->color = $color;
         $this->id = $id;
     }
+
 
     /**
      * @return mixed
@@ -128,7 +134,7 @@ class Task
                    <button type="button" class="btn btn-success" style="width: 2.5em"><i class="fas fa-check"></i></button>
                    <button type="button" class="btn btn-primary" style="width: 2.5em"><i class="fas fa-cog"></i></button>
         ';
-        return '<tr>
+        return '<tr style="background-color: '.$this->getColor().';">
                     <th scope="row">'.$this->getId().'</th>
                     <td>'.$this->getTitre().'</td>
                     <td>'.$this->getDescription().'</td>

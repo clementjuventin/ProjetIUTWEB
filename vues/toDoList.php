@@ -17,19 +17,38 @@
         <h3 style="padding: 10px">Todo liste du </h3>
         <form class="form-inline">
             <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
+                <?php
+                $day = (int)date("d");
+                var_dump($day);
+                for ($i = 1; $i <= 31; $i++) {
+                    if($day==$i){
+                        echo '<option value="'.$i.'" selected="selected">'.$i.'</option>';
+                        continue;
+                    }
+                    echo '<option value="'.$i.'">'.$i.'</option>';
+                }
+                ?>
             </select>
             <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                <option value="01">Janvier</option>
-                <option value="02">Février</option>
-                <option value="03">Mars</option>
+                <?php
+                $m = (int)date("m")-1;
+                $month = array("Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre");
+                for ($i = 0; $i < 12; $i++) {
+                    if($i==$m){
+                        echo '<option value="'.$month[$i].'" selected="selected">'.$month[$i].'</option>';
+                        continue;
+                    }
+                    echo '<option value="'.$month[$i].'">'.$month[$i].'</option>';
+                }
+                ?>
             </select>
             <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                <option value="2020">2020</option>
-                <option value="2021">2021</option>
-                <option value="2022">2022</option>
+                <?php
+                $year = (int)date("Y");
+                for ($i = $year; $i <= $year+10; $i++) {
+                    echo '<option value="'.$i.'">'.$i.'</option>';
+                }
+                ?>
             </select>
         </form>
     </div>

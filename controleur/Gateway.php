@@ -23,8 +23,10 @@ class Gateway
 
         $final = array();
         foreach ($results as $res){
-            array_push($final, new Task($res['title'],$res['description'],$res['user'],$res['id']));
+            $date = date('Y-m-d h:i',strtotime($res['date']));
+            array_push($final, new Task($res['title'],$res['description'],$res['user'],$date,$res['color'],$res['id']));
         }
+
         return $final;
     }
 
@@ -34,5 +36,19 @@ class Gateway
         $this->connexion->executeQuery($query,array(':log'=>array($login,PDO::PARAM_STR),':pswd'=>array($password,PDO::PARAM_STR)));
 
         return $this->connexion->getSucceed();
+    }
+
+    public function pushTask(Task $task){
+        $query="INSERT INTO task (user,title,description,date,color) VALUES(:usr,:title,:description,:dte,:color)";
+
+
+
+        $this->connexion->executeQuery($query,array(
+            ':usr'=>array($task->getUser(),PDO::PARAM_STR),
+            ':title'=>array($task->getTitre(),PDO::PARAM_STR),
+            ':description'=>array($task->getDescription(),PDO::PARAM_STR),
+            ':dte'=>array($task->getDate(),PDO::PARAM_STR),
+            ':color'=>array($task->getColor(),PDO::PARAM_STR)
+        ));
     }
 }
