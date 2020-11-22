@@ -10,7 +10,11 @@
   <component name="ComposerSettings">
     <execution />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1kQbrCzwVClEAhE2TKRTK8Y2q2t" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -18,13 +22,26 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\IUTTPWEB\testProjet\image" />
       <recent name="C:\wamp64\www\IUTTPWEB\testProjet\controleur" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="vues" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner directory="$PROJECT_DIR$/vues" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHPUnit.vues" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -35,7 +52,8 @@
       <option name="presentableId" value="Default" />
       <updated>1605635959191</updated>
       <workItem from="1605635960264" duration="3239000" />
-      <workItem from="1605859845268" duration="26528000" />
+      <workItem from="1605859845268" duration="29006000" />
+      <workItem from="1606048146027" duration="4612000" />
     </task>
     <servers />
   </component>
@@ -60,10 +78,14 @@
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
     <state x="628" y="233" key="NewPhpClassDialog/0.0.1680.1020/-1680.0.1680.1020@0.0.1680.1020" timestamp="1605863454184" />
-    <state x="674" y="433" key="NewPhpFileDialog" timestamp="1605930240061">
-      <screen x="0" y="0" width="1680" height="1020" />
+    <state x="-1006" y="433" key="NewPhpFileDialog" timestamp="1606052022967">
+      <screen x="-1680" y="0" width="1680" height="1020" />
     </state>
-    <state x="-1006" y="433" key="NewPhpFileDialog/0.0.1680.1020/-1680.0.1680.1020@-1680.0.1680.1020" timestamp="1605923436614" />
+    <state x="-1006" y="433" key="NewPhpFileDialog/0.0.1680.1020/-1680.0.1680.1020@-1680.0.1680.1020" timestamp="1606052022967" />
     <state x="674" y="433" key="NewPhpFileDialog/0.0.1680.1020/-1680.0.1680.1020@0.0.1680.1020" timestamp="1605930240061" />
+    <state x="-1184" y="235" key="run.anything.popup" timestamp="1606052457874">
+      <screen x="-1680" y="0" width="1680" height="1020" />
+    </state>
+    <state x="-1184" y="235" key="run.anything.popup/0.0.1680.1020/-1680.0.1680.1020@-1680.0.1680.1020" timestamp="1606052457874" />
   </component>
 </project>

@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">
-        <img src="https://getbootstrap.com/docs/4.1/components/navbar/#" width="30" height="30" class="d-inline-block align-top" alt="">
-    </a>
+<div style="height: 100px;">
+
+</div>
+<nav id="header" class="navbar navbar-expand-lg navbar-dark bg-dark" style="position:fixed;top: 0;width: 100%;min-height: 80px;">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -12,6 +12,47 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Journal</a>
+            </li>
+            <li class="nav-item">
+                <form style="display: inline-block;" class="form-inline">
+                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                        <?php
+                        $day = (int)date("d");
+                        for ($i = 1; $i <= 31; $i++) {
+                            if($day==$i){
+                                echo '<option value="'.$i.'" selected="selected">'.$i.'</option>';
+                                continue;
+                            }
+                            echo '<option value="'.$i.'">'.$i.'</option>';
+                        }
+                        ?>
+                    </select>
+                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                        <?php
+                        $m = (int)date("m")-1;
+                        $month = array("Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre");
+                        for ($i = 0; $i < 12; $i++) {
+                            if($i==$m){
+                                echo '<option value="'.$month[$i].'" selected="selected">'.$month[$i].'</option>';
+                                continue;
+                            }
+                            echo '<option value="'.$month[$i].'">'.$month[$i].'</option>';
+                        }
+                        ?>
+                    </select>
+                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                        <?php
+                        $year = (int)date("Y");
+                        for ($i = $year; $i <= $year+10; $i++) {
+                            echo '<option value="'.$i.'">'.$i.'</option>';
+                        }
+                        ?>
+                    </select>
+                </form>
+                <form style="display: inline-block;">
+                    <button style="padding: .375rem .75rem;font-size: 1rem;" type="submit" class="btn btn-secondary btn-lg">Ajouter une tâche</button>
+                    <input type="hidden" name="action" value="addTask">
+                </form>
             </li>
         </ul>
     </div>

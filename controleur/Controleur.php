@@ -89,7 +89,8 @@ function PushTask($user) {
 }
 function displayInterface($user){
 	global $gtw;
-	$task = $gtw->buildTaskForUser($user);
+
+	$task = $gtw->buildDailyTaskForUser($user, date("Y-m-d"));
 
 	require (__DIR__.'/../vues/head.php');
 	require (__DIR__.'/../vues/header.php');

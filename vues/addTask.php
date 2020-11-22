@@ -31,7 +31,7 @@
                 }
                 ?>
             </select>
-            <select name="month" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+            <select name="month" id="month" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
                 <?php
                 $m = (int)date("m")-1;
                 $month = array("Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre");
@@ -54,7 +54,7 @@
             </select>
             <select name="hour" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
                 <?php
-                $heure = (int)date("h")+7;
+                $heure = (int)date("h")+8;
                 for ($i = 0; $i < 24; $i++) {
                     if($i==$heure){
                         echo '<option value="'.$i.'" selected="selected">'.$i.'h</option>';

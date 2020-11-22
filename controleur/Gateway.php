@@ -14,10 +14,10 @@ class Gateway
         $this->connexion = $connexion;
     }
 
-    public function buildTaskForUser($user):array{
-        $query="SELECT * FROM task WHERE user=:usr;";
+    public function buildDailyTaskForUser($user,$date):array{
+        $query="SELECT * FROM task WHERE user=:usr AND date=:dte;";
 
-        $this->connexion->executeQuery($query,array(':usr'=>array($user,PDO::PARAM_STR)));
+        $this->connexion->executeQuery($query,array(':usr'=>array($user,PDO::PARAM_STR),':dte'=>array($date,PDO::PARAM_STR)));
 
         $results = $this->connexion->getResults();
 

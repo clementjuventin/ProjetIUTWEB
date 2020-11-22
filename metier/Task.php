@@ -100,7 +100,7 @@ class Task
      */
     public function getDate()
     {
-        return $this->date;
+        return date('Y-m-d',strtotime($this->date));
     }
 
     /**
@@ -127,6 +127,18 @@ class Task
         $this->color = $color;
     }
 
+    public function isPublic():bool{
+        return  $this->getUser()=="public";
+    }
+
+    public function isThisDay($date):bool{
+        return  strtotime($date)==strtotime($this->getDate());
+    }
+
+    public function getHour(){
+        return  date('h:i',strtotime($this->date));;
+    }
+
     public function __toString()
     {
         $settings = '
@@ -135,12 +147,14 @@ class Task
                    <button type="button" class="btn btn-primary" style="width: 2.5em"><i class="fas fa-cog"></i></button>
         ';
         return '<tr style="background-color: '.$this->getColor().';">
-                    <th scope="row">'.$this->getId().'</th>
+                    <th scope="row">'.($this->isPublic()?"":"<i class=\"fas fa-user-lock\"></i>").'</th>
                     <td>'.$this->getTitre().'</td>
                     <td>'.$this->getDescription().'</td>
-                    <td>'.$this->getDate().'</td>
+                    <td>'.$this->getHour().'</td>
                     <td class="hiddenButton">'.$settings.'</td>
                 </tr>
                 ';
     }
+
+
 }
