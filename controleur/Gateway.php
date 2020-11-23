@@ -30,18 +30,22 @@ class Gateway
         return $final;
     }
 
-    public function signIn($login, $password):bool{
-        $query="SELECT * FROM user WHERE login=:log AND password=:pswd;";
+    public function signIn($login, $password,&$dataVueErreur):bool{
+        Validation::val_SignIn($login,$password,$dataVueErreur);
 
+        $query="SELECT * FROM user WHERE login=:log AND password=:pswd;";
         $this->connexion->executeQuery($query,array(':log'=>array($login,PDO::PARAM_STR),':pswd'=>array($password,PDO::PARAM_STR)));
 
-        return $this->connexion->getSucceed();
+        $succes = $this->connexion->getSucceed();
+        if(!$succes){
+            $dataVueErreur[] =	"Mot de passe ou identifiant incorrect";
+        }
+
+        return $succes;
     }
 
     public function pushTask(Task $task){
         $query="INSERT INTO task (user,title,description,date,color) VALUES(:usr,:title,:description,:dte,:color)";
-
-
 
         $this->connexion->executeQuery($query,array(
             ':usr'=>array($task->getUser(),PDO::PARAM_STR),

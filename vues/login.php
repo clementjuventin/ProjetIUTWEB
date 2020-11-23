@@ -6,7 +6,7 @@
 
                 <input type="text" id="login" name="login" class="form-control" placeholder="Login" required="" autofocus="">
                 <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="">
-
+                <span style="color: red;" id="message"></span>
                 <button class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Sign in</button>
                 <a href="#" id="forgot_pswd">Forgot password?</a>
                 <hr>

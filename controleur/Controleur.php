@@ -63,8 +63,9 @@ function Reinit()  {
 }
 
 function SignIn($login,$password) {
+    global $dataVueErreur;
 	global $gtw;
-	$bool = $gtw->signIn($login,$password);
+	$bool = $gtw->signIn($login,$password,$dataVueErreur);
 	if($bool){
 		displayInterface($login);
 	}else{
@@ -79,8 +80,9 @@ function AddTask($user) {
 }
 function PushTask($user) {
     global $gtw;
-    global $action;
-    $action=NULL;
+    global $dataVueErreur;
+
+
 
     $task = new Task($_POST['title'],$_POST['comment'],$user,date('Y-m-d h:i',mktime($_POST['hour'], $_POST['min'], 0, $_POST['month'], $_POST['day'], $_POST['year'])),$_POST['color'],12);
     $gtw->pushTask($task);
