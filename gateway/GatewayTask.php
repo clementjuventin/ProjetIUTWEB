@@ -1,7 +1,7 @@
 <?php
 
 
-class Gateway
+class GatewayTask
 {
     public $connexion;
 
@@ -24,24 +24,10 @@ class Gateway
         $final = array();
         foreach ($results as $res){
             $date = date('Y-m-d h:i',strtotime($res['date']));
-            array_push($final, new Task($res['title'],$res['description'],$res['user'],$date,$res['color'],$res['id']));
+            $final[] = new Task($res['title'],$res['description'],$res['user'],$date,$res['color'],$res['id']);
         }
 
         return $final;
-    }
-
-    public function signIn($login, $password,&$dataVueErreur):bool{
-        Validation::val_SignIn($login,$password,$dataVueErreur);
-
-        $query="SELECT * FROM user WHERE login=:log AND password=:pswd;";
-        $this->connexion->executeQuery($query,array(':log'=>array($login,PDO::PARAM_STR),':pswd'=>array($password,PDO::PARAM_STR)));
-
-        $succes = $this->connexion->getSucceed();
-        if(!$succes){
-            $dataVueErreur[] =	"Mot de passe ou identifiant incorrect";
-        }
-
-        return $succes;
     }
 
     public function pushTask(Task $task){

@@ -3,21 +3,16 @@
 class Validation {
 
     static function val_action($action) {
-
     if (!isset($action)) { throw new Exception('pas d\'action');}
-
-        //on pourrait aussi utiliser
-    //$action = $_GET['action'] ?? 'no';
-        // This is equivalent to:
-        //$action =  if (isset($_GET['action'])) $action=$_GET['action']  else $action='no';
-
     }
+
     static function fil_string(string &$string):bool{
         if($string != filter_var($string, FILTER_SANITIZE_STRING)){
             return false;
         }
         return true;
     }
+
     static function val_string(string &$string):bool{
         if(!isset($string)||$string==""){
             return 0;
@@ -40,27 +35,29 @@ class Validation {
         }
     }
 
+    static function val_Task(&$title,&$comment,&$date,&$color,&$dataVueErreur){
+
+        if (!Validation::val_string($title) || !Validation::val_string($date) || !Validation::val_string($color)){
+            $dataVueErreur[] =	"Erreur dans la saisie";
+            $title="";
+            $comment="";
+            $date="";
+            $color="";
+        }
+        $title=filter_var($title, FILTER_SANITIZE_STRING);
+        $comment=filter_var($comment, FILTER_SANITIZE_STRING);
+        $date=filter_var($date, FILTER_SANITIZE_STRING);
+        $color=filter_var($color, FILTER_SANITIZE_STRING);
+
+        //Comment enlever les < mais pas les '
+    }
+
     static function val_Date(string &$day, string &$month, array &$dataVueErreur) {
         if($month%2!=1){
             if(($month==2 && $day>=29)||$day==31){
                 $dataVueErreur[] =	"Le jour saisie n'existe pas";
             }
         }
-    }
-
-    static function val_Task(string &$titre, string &$commentaire, string &$day, string &$month, array &$dataVueErreur) {
-
-        if (!Validation::val_string($titre)){
-            $dataVueErreur[] =	"La saisie d'un titre est obligatoire";
-            $titre="";
-        }
-        if (!Validation::fil_string($titre) || !Validation::fil_string($commentaire))
-        {
-            $dataVueErreur[] =	"INJECTION";
-            $titre="";
-            $commentaire="";
-        }
-        Validation::val_Date($day,$month,$dataVueErreur);
     }
 }
 ?>

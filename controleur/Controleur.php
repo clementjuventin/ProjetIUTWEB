@@ -3,8 +3,10 @@
 //chargement biblio
 require_once(__DIR__.'/Validation.php');
 require_once(__DIR__.'/Connexion.php');
-require_once(__DIR__.'/Gateway.php');
+require_once(__DIR__.'/../gateway/GatewayTask.php');
+require_once(__DIR__.'/../gateway/GatewayUser.php');
 require_once(__DIR__.'/../metier/Task.php');
+require_once(__DIR__.'/../metier/User.php');
 
 //chargement config
 include_once(__DIR__.'/../config/Config.php');
@@ -16,7 +18,8 @@ $dataVueErreur = array ();
 
 try{
 	$connexion = new Connexion($base,$login,$mdp);
-	$gtw = new Gateway($connexion);
+
+	$user = new User();
 
 	$action=$_REQUEST['action'];
 
@@ -29,10 +32,10 @@ try{
 		SignIn($_POST['login'],$_POST['password']);
 		break;
 	case "addTask":
-	    AddTask('clem');//Recouvrer le login
+	    InitAddTask();
 	    break;
 	case "addTaskSubmit":
-        PushTask('clem');//Recouvrer le login
+        PushTask($user);//Recouvrer le login
         break;
 	default:
 		echo "pas d action";
@@ -41,58 +44,71 @@ try{
 } catch (PDOException $e)
 {
 	//si erreur BD, pas le cas ici
-	$dataVueErreur[] =	"Erreur inattendue!!! ";
+	$dataVueErreur[] =	$e->getMessage();
 	require (__DIR__.'/../vues/erreur.php');
-
-}
-catch (Exception $e2)
+} catch (Exception $e2)
 	{
-	$dataVueErreur[] =	"Erreur inattendue!!! ";
+	$dataVueErreur[] =	$e2->getMessage();
 	require (__DIR__.'/../vues/erreur.php');
-	}
-
-
-//fin
+}
 exit(0);
-
 
 function Reinit()  {
 	require (__DIR__.'/../vues/head.php');
 	require (__DIR__.'/../vues/login.php');
 	require (__DIR__.'/../vues/footer.php');
 }
-
-function SignIn($login,$password) {
-    global $dataVueErreur;
-	global $gtw;
-	$bool = $gtw->signIn($login,$password,$dataVueErreur);
-	if($bool){
-		displayInterface($login);
-	}else{
-		Reinit();
-	}
-}
-function AddTask($user) {
+function InitAddTask() {
     require (__DIR__.'/../vues/head.php');
     require (__DIR__.'/../vues/header.php');
     require (__DIR__.'/../vues/addTask.php');
     require (__DIR__.'/../vues/footer.php');
 }
-function PushTask($user) {
-    global $gtw;
+function SignIn($login,$password) {
+	global $user;
+	global $connexion;
+    global $dataVueErreur;
+    
+    $gtw = new GatewayUser($connexion);
+
+    Validation::val_SignIn($login,$password,$dataVueErreur);
+	$bool = $gtw->signIn($login,$password,$dataVueErreur);
+	if($bool){
+        $user->setLogin($login);
+		displayInterface($user);
+	}else{
+		Reinit();
+	}
+}
+function PushTask() {
+	global $user;
+    global $connexion;
     global $dataVueErreur;
 
+	$gtw = new GatewayTask($connexion);
 
+	$title = $_POST['title'];
+	$comment = $_POST['comment'];
+	$date = date('Y-m-d h:i',mktime($_POST['hour'], $_POST['min'], 0, $_POST['month'], $_POST['day'], $_POST['year']));
+    $color = $_POST['color'];
 
-    $task = new Task($_POST['title'],$_POST['comment'],$user,date('Y-m-d h:i',mktime($_POST['hour'], $_POST['min'], 0, $_POST['month'], $_POST['day'], $_POST['year'])),$_POST['color'],12);
+    Validation::val_Task($title,$comment,$date,$color,$dataVueErreur);
+
+    if($title==""){
+        throw new ErrorException("Error",0,1,__FILE__,__LINE__,null);
+    }
+    $task = new Task($_POST['title'],$_POST['comment'],$user,date('Y-m-d h:i',mktime($_POST['hour'], $_POST['min'], 0, $_POST['month'], $_POST['day'], $_POST['year'])),$_POST['color'],0);
     $gtw->pushTask($task);
-
     displayInterface($user);
 }
-function displayInterface($user){
-	global $gtw;
+function displayInterface(){
+	global $user;
+    global $connexion;
+    global $dataVueErreur;
 
-	$task = $gtw->buildDailyTaskForUser($user, date("Y-m-d"));
+    $gtw = new GatewayTask($connexion);
+
+	$task = $gtw->buildDailyTaskForUser($user->getLogin(), date("Y-m-d"));
 
 	require (__DIR__.'/../vues/head.php');
 	require (__DIR__.'/../vues/header.php');
