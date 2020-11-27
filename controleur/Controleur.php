@@ -1,6 +1,6 @@
 <?php
 
-//chargement biblio
+//chargement bibliothèque
 require_once(__DIR__.'/Validation.php');
 require_once(__DIR__.'/Connexion.php');
 require_once(__DIR__.'/../gateway/GatewayTask.php');
@@ -11,20 +11,17 @@ require_once(__DIR__.'/../metier/User.php');
 //chargement config
 include_once(__DIR__.'/../config/Config.php');
 
-//debut
-
-//on initialise un tableau d'erreur
 $dataVueErreur = array ();
 
 try{
 	$connexion = new Connexion($base,$login,$mdp);
 
 	$user = new User();
+	$user->setLogin('clem');
 
 	$action=$_REQUEST['action'];
 
 	switch($action) {
-	//pas d'action, on réinitialise 1er appel
 	case NULL:
 		Reinit();
 		break;
@@ -35,20 +32,18 @@ try{
 	    InitAddTask();
 	    break;
 	case "addTaskSubmit":
-        PushTask($user);//Recouvrer le login
+        PushTask($user);
         break;
 	default:
-		echo "pas d action";
-	break;
+		echo "--";
 	}
 } catch (PDOException $e)
 {
-	//si erreur BD, pas le cas ici
-	$dataVueErreur[] =	$e->getMessage();
+	$dataVueErreur["PDOException"] = $e->getMessage();
 	require (__DIR__.'/../vues/erreur.php');
 } catch (Exception $e2)
-	{
-	$dataVueErreur[] =	$e2->getMessage();
+{
+	$dataVueErreur["Exception"] =	$e2->getMessage();
 	require (__DIR__.'/../vues/erreur.php');
 }
 exit(0);
@@ -71,7 +66,7 @@ function SignIn($login,$password) {
     
     $gtw = new GatewayUser($connexion);
 
-    Validation::val_SignIn($login,$password,$dataVueErreur);
+    //Validation::val_SignIn($login,$password,$dataVueErreur);
 	$bool = $gtw->signIn($login,$password,$dataVueErreur);
 	if($bool){
         $user->setLogin($login);
@@ -87,21 +82,15 @@ function PushTask() {
 
 	$gtw = new GatewayTask($connexion);
 
-	$title = $_POST['title'];
-	$comment = $_POST['comment'];
-	$date = date('Y-m-d h:i',mktime($_POST['hour'], $_POST['min'], 0, $_POST['month'], $_POST['day'], $_POST['year']));
-    $color = $_POST['color'];
 
-    Validation::val_Task($title,$comment,$date,$color,$dataVueErreur);
-
-    if($title==""){
-        throw new ErrorException("Error",0,1,__FILE__,__LINE__,null);
-    }
     $task = new Task($_POST['title'],$_POST['comment'],$user,date('Y-m-d h:i',mktime($_POST['hour'], $_POST['min'], 0, $_POST['month'], $_POST['day'], $_POST['year'])),$_POST['color'],0);
+    Validation::val_Task($task,$dataVueErreur);
     $gtw->pushTask($task);
-    displayInterface($user);
+
+    $_request['action']=NULL;
+    header('Location: controleur/Controleur.php');
 }
-function displayInterface(){
+function displayInterface($user){
 	global $user;
     global $connexion;
     global $dataVueErreur;

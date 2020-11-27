@@ -23,7 +23,6 @@ class GatewayUser
         if(!$succes){
             $dataVueErreur[] =	"Mot de passe ou identifiant incorrect";
         }
-
         return $succes;
     }
 }

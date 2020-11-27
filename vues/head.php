@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="no-js" lang="fr">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Titre</title>
 
