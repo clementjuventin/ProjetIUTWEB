@@ -27,7 +27,6 @@ class GatewayUser
         }
          */
 
-
         $succes = $this->connexion->getSucceed();
         if(!$succes){
             $dataVueErreur["Login"] =	"Mot de passe ou identifiant invalide";

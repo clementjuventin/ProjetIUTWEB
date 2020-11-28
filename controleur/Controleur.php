@@ -17,6 +17,7 @@ try{
 	$connexion = new Connexion($base,$login,$mdp);
 
 	$user = new User();
+	//isset($_SESSION['user'])?$_SESSION['user']:"public"
 
 	$action=$_REQUEST['action'];
 
