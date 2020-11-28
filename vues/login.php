@@ -9,7 +9,7 @@
     }
 
     .box{
-        width: 300px;
+        min-width: 400px;
         padding: 30px;
         margin-left: auto;
         margin-right: auto;
@@ -59,7 +59,6 @@
     .box input[type = "text"]:focus,.box input[type = "password"]:focus{
         width: 250px;
         border-color: #20bf6b;
-
     }
 
     .box a{

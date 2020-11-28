@@ -9,12 +9,10 @@
     }
 
     .box{
-        width: 300px;
+        min-width: 400px;
         padding: 30px;
         margin-left: auto;
         margin-right: auto;
-        top: 50%;
-        bottom: 50%;
         background: #191919;
         text-align: center;
         border-radius: 25px;
