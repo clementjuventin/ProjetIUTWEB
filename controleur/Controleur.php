@@ -17,17 +17,19 @@ try{
 	$connexion = new Connexion($base,$login,$mdp);
 
 	$user = new User();
-	$user->setLogin('clem');
 
 	$action=$_REQUEST['action'];
 
 	switch($action) {
-	case NULL:
-		Reinit();
-		break;
 	case "signIn":
 		SignIn($_POST['login'],$_POST['password']);
 		break;
+	case "signUpRedirect":
+        SignUpRedirect();
+        break;
+    case "signUp":
+        SignUp($_POST['login'],$_POST['password'],$_POST['cpassword']);
+        break;
 	case "addTask":
 	    InitAddTask();
 	    break;
@@ -35,7 +37,7 @@ try{
         PushTask($user);
         break;
 	default:
-		echo "--";
+        Reinit();
 	}
 } catch (PDOException $e)
 {
@@ -66,7 +68,7 @@ function SignIn($login,$password) {
     
     $gtw = new GatewayUser($connexion);
 
-    //Validation::val_SignIn($login,$password,$dataVueErreur);
+    Validation::val_SignIn($login,$password,$dataVueErreur);
 	$bool = $gtw->signIn($login,$password,$dataVueErreur);
 	if($bool){
         $user->setLogin($login);
@@ -74,6 +76,25 @@ function SignIn($login,$password) {
 	}else{
 		Reinit();
 	}
+}
+function SignUp($login,$password,$cpassword) {
+    global $connexion;
+    global $dataVueErreur;
+
+    $gtw = new GatewayUser($connexion);
+
+    $bool=false;
+    if(Validation::val_SignUp($login,$password,$cpassword,$dataVueErreur)){
+        $bool = $gtw->signUp($login,$password,$dataVueErreur);
+    }
+    if($bool){
+        require (__DIR__.'/../vues/login.php');
+    }else{
+        SignUpRedirect();
+    }
+}
+function SignUpRedirect(){
+    require (__DIR__.'/../vues/signUp.php');
 }
 function PushTask() {
 	global $user;

@@ -78,7 +78,6 @@
         text-decoration: none;
     }
 
-
     .box input[type = "submit"]{
         border: 0px;
         background: none;
@@ -99,20 +98,18 @@
     .box input[type = "submit"]:focus{
         border-color: #20bf6b;
     }
+
 </style>
 <html lang="fr" dir="ltr">
 <head>
     <meta charset="utf-8">
-    <title>Homepage</title>
-
-
+    <title>Inscription</title>
 </head>
-<body>
+<body class="inscription">
 <div class="box">
-    <form   method="post">
-        <h1>Todo List</h1>
-        <input type="text" name="login" placeholder="Nom d'utilisateur">
-        <input type="password" name="password" placeholder="Mot de passe" required>
+    <form method="post">
+        <h1>Inscription</h1>
+        <input type="text" name="login" placeholder="Nom d'utilisateur" required>
         <span style="color: #b32323;">
         <?php
         global $dataVueErreur;
@@ -123,19 +120,27 @@
             }
         }
         ?>
-        </span>
-        <input type="submit" name="connexion" value="Connexion" id="login" required>
-        <input type="hidden" name="action" value="signIn">
+    </span>
+        <input type="password" name="password" placeholder="Mot de passe" required>
+        <input type="password" name="cpassword" placeholder="Confirmer Mot de passe" required>
+        <span style="color: #b32323;">
+        <?php
+        global $dataVueErreur;
+        if(isset($dataVueErreur)){
+            if(isset($dataVueErreur['Password'])){
+                echo $dataVueErreur['Password'];
+                $dataVueErreur['Password'] = NULL;
+            }
+        }
+        ?>
+    </span>
+        <input type="submit" name="inscription" value="Inscription" id="inscription">
+        <input type="hidden" name="action" value="signUp">
     </form>
-    <form method="post">
-        <input type="submit" name="inscription" value="Inscription" id="signup">
-        <input type="hidden" name="action" value="signUpRedirect">
+    <form  method="post">
+        <input type="submit" name="connexion" value="Retour" id="login" required>
+        <input type="hidden" name="action" value="NULL">
     </form>
 </div>
-
-
-
 </body>
-
-
 </html>
