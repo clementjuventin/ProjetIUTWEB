@@ -23,7 +23,7 @@ class Validation {
             $dataVueErreur['Password'] = "Identifiant ou mot de passe non entré.";
             return false;
         }
-        if (filter_var($login, FILTER_SANITIZE_STRING)!=$login)
+        if (filter_var($login, FILTER_SANITIZE_STRING)!=$login)//Utiliser validate
         {
             $dataVueErreur['Login'] = "Caractères utilisés incorrectes";
             $login="";

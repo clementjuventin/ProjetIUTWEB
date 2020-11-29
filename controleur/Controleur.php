@@ -14,31 +14,38 @@ include_once(__DIR__.'/../config/Config.php');
 $dataVueErreur = array ();
 
 try{
+    session_start();
 	$connexion = new Connexion($base,$login,$mdp);
 
-	$user = new User();
+	var_dump($_SESSION);
+    /*
+	if(isset($_SESSION['user'])){
+        $user = $_SESSION['user'];
+    }
+    */
+
 	//isset($_SESSION['user'])?$_SESSION['user']:"public"
 
 	$action=$_REQUEST['action'];
 
 	switch($action) {
-	case "signIn":
-		SignIn($_POST['login'],$_POST['password']);
-		break;
-	case "signUpRedirect":
-        SignUpRedirect();
-        break;
-    case "signUp":
-        SignUp($_POST['login'],$_POST['password'],$_POST['cpassword']);
-        break;
-	case "addTask":
-	    InitAddTask();
-	    break;
-	case "addTaskSubmit":
-        PushTask($user);
-        break;
-	default:
-        Reinit();
+        case "signIn":
+            SignIn($_POST['login'],$_POST['password']);
+            break;
+        case "signUpRedirect":
+            SignUpRedirect();
+            break;
+        case "signUp":
+            SignUp($_POST['login'],$_POST['password'],$_POST['cpassword']);
+            break;
+        case "addTask":
+            InitAddTask();
+            break;
+        case "addTaskSubmit":
+            PushTask();
+            break;
+        default:
+            Reinit();
 	}
 } catch (PDOException $e)
 {
@@ -59,11 +66,11 @@ function Reinit()  {
 function InitAddTask() {
     require (__DIR__.'/../vues/head.php');
     require (__DIR__.'/../vues/header.php');
+    var_dump($_SESSION['user']);
     require (__DIR__.'/../vues/addTask.php');
     require (__DIR__.'/../vues/footer.php');
 }
 function SignIn($login,$password) {
-	global $user;
 	global $connexion;
     global $dataVueErreur;
     
@@ -72,8 +79,8 @@ function SignIn($login,$password) {
     Validation::val_SignIn($login,$password,$dataVueErreur);
 	$bool = $gtw->signIn($login,$password,$dataVueErreur);
 	if($bool){
-        $user->setLogin($login);
-		displayInterface($user);
+        session($login, $password);
+		displayInterface();
 	}else{
 		Reinit();
 	}
@@ -98,12 +105,15 @@ function SignUpRedirect(){
     require (__DIR__.'/../vues/signUp.php');
 }
 function PushTask() {
-	global $user;
+    //Sous case cochée
+    //mail(<adresse du destinataire>,<titre du mail>,<corps du message>);
+
     global $connexion;
     global $dataVueErreur;
 
-	$gtw = new GatewayTask($connexion);
+    $user = $_SESSION['user'];
 
+	$gtw = new GatewayTask($connexion);
 
     $task = new Task($_POST['title'],$_POST['comment'],$user,date('Y-m-d h:i',mktime($_POST['hour'], $_POST['min'], 0, $_POST['month'], $_POST['day'], $_POST['year'])),$_POST['color'],0);
     Validation::val_Task($task,$dataVueErreur);
@@ -112,10 +122,13 @@ function PushTask() {
     $_request['action']=NULL;
     header('Location: controleur/Controleur.php');
 }
-function displayInterface($user){
-	global $user;
+function displayInterface(){
     global $connexion;
     global $dataVueErreur;
+
+    $user = $_SESSION['user'];
+
+    var_dump($user);
 
     $gtw = new GatewayTask($connexion);
 
@@ -126,4 +139,14 @@ function displayInterface($user){
 	require (__DIR__.'/../vues/toDoList.php');
 	require (__DIR__.'/../vues/footer.php');
 }
+function makeCookie(){
+    //setcookie("titre", "desc", time()+365*24*3600);
+}
+function session($login, $password){
+    session_start();
+    $user = new User($login, $password);
 
+    $_SESSION['user'] = $user;
+
+    //var_dump(session_id());
+}
