@@ -1,28 +1,31 @@
 <?php
 
 //chargement bibliothèque
-require_once(__DIR__.'/Validation.php');
-require_once(__DIR__.'/Connexion.php');
-require_once(__DIR__.'/../gateway/GatewayTask.php');
-require_once(__DIR__.'/../gateway/GatewayUser.php');
-require_once(__DIR__.'/../metier/Task.php');
-require_once(__DIR__.'/../metier/User.php');
+require_once(__DIR__ . '/Validation.php');
+require_once(__DIR__ . '/Connexion.php');
+require_once(__DIR__ . '/../gateway/GatewayTask.php');
+require_once(__DIR__ . '/../gateway/GatewayUser.php');
+require_once(__DIR__ . '/../metier/Task.php');
+require_once(__DIR__ . '/../metier/User.php');
 
 //chargement config
-include_once(__DIR__.'/../config/Config.php');
+include_once(__DIR__ . '/../config/config.php');
 
 $dataVueErreur = array ();
 
 try{
     session_start();
+
 	$connexion = new Connexion($base,$login,$mdp);
 
-	var_dump($_SESSION);
-    /*
+
 	if(isset($_SESSION['user'])){
         $user = $_SESSION['user'];
+    }else{
+	    $user = new User("public","");
+        $_SESSION['user'] = $user;
     }
-    */
+
 
 	//isset($_SESSION['user'])?$_SESSION['user']:"public"
 
@@ -50,25 +53,24 @@ try{
 } catch (PDOException $e)
 {
 	$dataVueErreur["PDOException"] = $e->getMessage();
-	require (__DIR__.'/../vues/erreur.php');
+	require(__DIR__ . '/../vues/erreur.php');
 } catch (Exception $e2)
 {
 	$dataVueErreur["Exception"] =	$e2->getMessage();
-	require (__DIR__.'/../vues/erreur.php');
+	require(__DIR__ . '/../vues/erreur.php');
 }
 exit(0);
 
 function Reinit()  {
-	require (__DIR__.'/../vues/head.php');
-	require (__DIR__.'/../vues/login.php');
-	require (__DIR__.'/../vues/footer.php');
+	require(__DIR__ . '/../vues/head.php');
+	require(__DIR__ . '/../vues/login.php');
+	require(__DIR__ . '/../vues/footer.php');
 }
 function InitAddTask() {
-    require (__DIR__.'/../vues/head.php');
-    require (__DIR__.'/../vues/header.php');
-    var_dump($_SESSION['user']);
-    require (__DIR__.'/../vues/addTask.php');
-    require (__DIR__.'/../vues/footer.php');
+    require(__DIR__ . '/../vues/head.php');
+    require(__DIR__ . '/../vues/header.php');
+    require(__DIR__ . '/../vues/addTask.php');
+    require(__DIR__ . '/../vues/footer.php');
 }
 function SignIn($login,$password) {
 	global $connexion;
@@ -96,13 +98,13 @@ function SignUp($login,$password,$cpassword) {
         $bool = $gtw->signUp($login,$password,$dataVueErreur);
     }
     if($bool){
-        require (__DIR__.'/../vues/login.php');
+        require(__DIR__ . '/../vues/login.php');
     }else{
         SignUpRedirect();
     }
 }
 function SignUpRedirect(){
-    require (__DIR__.'/../vues/signUp.php');
+    require(__DIR__ . '/../vues/signUp.php');
 }
 function PushTask() {
     //Sous case cochée
@@ -128,16 +130,14 @@ function displayInterface(){
 
     $user = $_SESSION['user'];
 
-    var_dump($user);
-
     $gtw = new GatewayTask($connexion);
 
 	$task = $gtw->buildDailyTaskForUser($user->getLogin(), date("Y-m-d"));
 
-	require (__DIR__.'/../vues/head.php');
-	require (__DIR__.'/../vues/header.php');
-	require (__DIR__.'/../vues/toDoList.php');
-	require (__DIR__.'/../vues/footer.php');
+	require(__DIR__ . '/../vues/head.php');
+	require(__DIR__ . '/../vues/header.php');
+	require(__DIR__ . '/../vues/toDoList.php');
+	require(__DIR__ . '/../vues/footer.php');
 }
 function makeCookie(){
     //setcookie("titre", "desc", time()+365*24*3600);

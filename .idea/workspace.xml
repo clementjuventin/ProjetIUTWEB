@@ -59,7 +59,7 @@
       <workItem from="1606109528486" duration="1657000" />
       <workItem from="1606369690037" duration="5103000" />
       <workItem from="1606463481731" duration="6375000" />
-      <workItem from="1606553167540" duration="8677000" />
+      <workItem from="1606553167540" duration="13639000" />
     </task>
     <servers />
   </component>
@@ -67,6 +67,14 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="-1214" y="188" key="#Inspections" timestamp="1606660309932">
+      <screen x="-1680" y="0" width="1680" height="1020" />
+    </state>
+    <state x="-1214" y="188" key="#Inspections/0.0.1680.1020/-1680.0.1680.1020@-1680.0.1680.1020" timestamp="1606660309932" />
+    <state x="-1100" y="312" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606656063515">
+      <screen x="-1680" y="0" width="1680" height="1020" />
+    </state>
+    <state x="-1100" y="312" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1680.1020/-1680.0.1680.1020@-1680.0.1680.1020" timestamp="1606656063515" />
     <state x="-1047" y="219" key="#com.intellij.ide.util.MemberChooser" timestamp="1606647654045">
       <screen x="-1680" y="0" width="1680" height="1020" />
     </state>
@@ -85,10 +93,10 @@
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
     <state x="628" y="233" key="NewPhpClassDialog/0.0.1680.1020/-1680.0.1680.1020@0.0.1680.1020" timestamp="1605863454184" />
-    <state x="-940" y="323" key="NewPhpFileDialog" timestamp="1606553214551">
+    <state x="-940" y="323" key="NewPhpFileDialog" timestamp="1606656252878">
       <screen x="-1680" y="0" width="1680" height="1020" />
     </state>
-    <state x="-940" y="323" key="NewPhpFileDialog/0.0.1680.1020/-1680.0.1680.1020@-1680.0.1680.1020" timestamp="1606553214551" />
+    <state x="-940" y="323" key="NewPhpFileDialog/0.0.1680.1020/-1680.0.1680.1020@-1680.0.1680.1020" timestamp="1606656252878" />
     <state x="674" y="433" key="NewPhpFileDialog/0.0.1680.1020/-1680.0.1680.1020@0.0.1680.1020" timestamp="1605930240061" />
     <state x="-1184" y="235" key="run.anything.popup" timestamp="1606099720727">
       <screen x="-1680" y="0" width="1680" height="1020" />

@@ -9,10 +9,13 @@
     }
 </style>
 <div class="container">
-    <a href="#"><- Revenir en arrière</a>
+    <form style="display: inline-block;">
+        <button style="padding: .375rem .75rem;font-size: 1rem;" type="submit" class="btn btn-secondary btn-lg">Annuler</button>
+        <input type="hidden" name="action" value="displayTask">
+    </form>
     <form style="margin: 20px 0;" method="post">
         <div class="form-group">
-            <input type="text" class="form-control" id="title" name="title" placeholder="Titre">
+            <input type="text" class="form-control" id="title" name="title" placeholder="Titre" required>
         </div>
         <div class="form-group">
             <textarea class="form-control" id="comment" rows="3" name="comment" placeholder="Commentaire"></textarea>

@@ -32,7 +32,7 @@ class Validation {
         return true;
     }
 
-    static function val_Task(Task &$task,&$dataVueErreur){
+    static function fil_Task(Task &$task,&$dataVueErreur){
         $tmp = $task->getTitre();
         if(!isset($tmp)||$tmp==""){
             $dataVueErreur['Titre'] = "Aucun titre renseigné.";
@@ -48,7 +48,7 @@ class Validation {
             $dataVueErreur['Color'] = "[ERR] Color";
         }
         $task->setColor(filter_var($tmp, FILTER_SANITIZE_STRING));
-        $tmp = $task->getDate();
+        $tmp = $task->getDate().' '.$task->getHour();
         if(!isset($tmp)||$tmp==""){
             $dataVueErreur['Date'] = "[ERR] Date";
         }
