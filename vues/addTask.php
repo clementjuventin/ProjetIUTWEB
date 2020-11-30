@@ -10,7 +10,7 @@
 </style>
 <div class="container">
     <form style="display: inline-block;">
-        <button style="padding: .375rem .75rem;font-size: 1rem;" type="submit" class="btn btn-secondary btn-lg">Annuler</button>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-angle-double-left"></i> Annuler</button>
         <input type="hidden" name="action" value="displayTask">
     </form>
     <form style="margin: 20px 0;" method="post">
@@ -94,7 +94,7 @@
             ?>
         </div>
         <div style="margin-top: 1em">
-            <button type="submit" class="btn btn-secondary btn-lg btn-block">Ajouter une tâche</button>
+            <button type="submit" class="btn btn-success btn-lg btn-block"><i class="fas fa-check"></i> Ajouter la tâche</button>
             <input type="hidden" name="action" value="addTaskSubmit">
         </div>
     </form>

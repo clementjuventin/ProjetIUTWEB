@@ -1,11 +1,15 @@
 <div style="height: 100px;">
 
-</div>
+</div>                                                                  <!--position:fixed;top: 0;-->
 <nav id="header" class="navbar navbar-expand-lg navbar-dark bg-dark" style="position:fixed;top: 0;width: 100%;min-height: 80px;">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
+        <form style="display: inline-block;">
+            <button type="submit" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Déconnexion</button>
+            <input type="hidden" name="action" value="logOut">
+        </form>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="#">Todolist<span class="sr-only">(current)</span></a>
@@ -50,7 +54,7 @@
                     </select>
                 </form>
                 <form style="display: inline-block;">
-                    <button style="padding: .375rem .75rem;font-size: 1rem;" type="submit" class="btn btn-secondary btn-lg">Ajouter une tâche</button>
+                    <button type="submit" class="btn btn-success"><i class="fas fa-plus"></i> Ajouter une tâche</button>
                     <input type="hidden" name="action" value="addTask">
                 </form>
             </li>

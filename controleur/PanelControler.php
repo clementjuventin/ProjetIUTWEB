@@ -41,8 +41,7 @@ try{
             break;
         default:
             $_REQUEST['action'] = "logOut";
-            echo "logout";
-            //header('Location: controleur/SessionControler.php');
+            header('Location: SessionControler.php');
     }
 } catch (PDOException $e)
 {
@@ -86,7 +85,10 @@ function displayInterface(){
 
     $gtw = new GatewayTask($connexion);
 
-    $task = $gtw->buildDailyTaskForUser($user->getLogin(), date("Y-m-d"));
+    $task = $gtw->buildDailyTaskForUser($user, date("Y-m-d"));
+    if($user->getLogin()!="public"){
+        $task = array_merge($gtw->buildDailyTaskForUser(new User("public","public"), date("Y-m-d")),$task);
+    }
 
     require (__DIR__.'/../vues/head.php');
     require (__DIR__.'/../vues/header.php');

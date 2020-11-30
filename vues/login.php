@@ -123,11 +123,15 @@
         }
         ?>
         </span>
-        <input type="submit" name="connexion" value="Connexion" id="login" required>
+        <input type="submit" name="connexion" value="Connexion" required>
         <input type="hidden" name="action" value="signIn">
     </form>
-    <form method="post">
-        <input type="submit" name="inscription" value="Inscription" id="signup">
+    <form>
+        <input type="submit" name="inscription" value="Profil publique">
+        <input type="hidden" name="action" value="public">
+    </form>
+    <form>
+        <input type="submit" name="inscription" value="Inscription">
         <input type="hidden" name="action" value="signUpRedirect">
     </form>
 </div>

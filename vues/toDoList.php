@@ -8,11 +8,8 @@
     .table tbody tr:hover .hiddenButton button{
         visibility: visible;
     }
-    div{
-        line-height: 3;
-    }
 </style>
-<div class="container" style="text-align: center;">
+<div class="container" style="text-align: center;line-height: 3;">
     <div style="width: 100%;">
         <table class="table table-hover">
             <thead>

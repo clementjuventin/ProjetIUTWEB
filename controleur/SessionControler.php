@@ -29,15 +29,17 @@ try{
         case "signIn":
             SignIn($_POST['login'],$_POST['password']);
             break;
+        case "public":
+            SignIn("public","public");
+            break;
         case "signUpRedirect":
             SignUpRedirect();
             break;
         case "signUp":
             SignUp($_POST['login'],$_POST['password'],$_POST['cpassword']);
             break;
-        case "logOut":
-            session_destroy();
         default:
+            session_destroy();
             Reinit();
     }
 } catch (PDOException $e)

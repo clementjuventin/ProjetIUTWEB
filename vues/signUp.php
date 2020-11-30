@@ -136,7 +136,7 @@
         <input type="hidden" name="action" value="signUp">
     </form>
     <form  method="post">
-        <input type="submit" name="connexion" value="Retour" id="login" required>
+        <input type="submit" name="connexion" value="Retour" id="login" required><i class="fas fa-angle-double-left"></i>
         <input type="hidden" name="action" value="NULL">
     </form>
 </div>
