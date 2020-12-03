@@ -28,9 +28,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\wamp64\www\IUTTPWEB\testProjet\vues" />
-      <recent name="C:\wamp64\www\IUTTPWEB\testProjet\image" />
+      <recent name="C:\wamp64\www\IUTTPWEB\testProjet\model" />
+      <recent name="C:\wamp64\www\IUTTPWEB\testProjet\dataBase" />
       <recent name="C:\wamp64\www\IUTTPWEB\testProjet\controleur" />
+      <recent name="C:\wamp64\www\IUTTPWEB\testProjet\model\metier" />
+      <recent name="C:\wamp64\www\IUTTPWEB\testProjet" />
     </key>
   </component>
   <component name="RunManager">
@@ -59,7 +61,10 @@
       <workItem from="1606109528486" duration="1657000" />
       <workItem from="1606369690037" duration="5103000" />
       <workItem from="1606463481731" duration="6375000" />
-      <workItem from="1606553167540" duration="18431000" />
+      <workItem from="1606553167540" duration="19166000" />
+      <workItem from="1606875378683" duration="9556000" />
+      <workItem from="1606973204984" duration="572000" />
+      <workItem from="1606986830738" duration="2822000" />
     </task>
     <servers />
   </component>
@@ -89,15 +94,24 @@
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
     <state x="620" y="265" key="FileChooserDialogImpl/0.0.1680.1020/-1680.0.1680.1020@0.0.1680.1020" timestamp="1605921065689" />
-    <state x="628" y="233" key="NewPhpClassDialog" timestamp="1605863454184">
+    <state x="628" y="233" key="NewPhpClassDialog" timestamp="1606988364520">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
-    <state x="628" y="233" key="NewPhpClassDialog/0.0.1680.1020/-1680.0.1680.1020@0.0.1680.1020" timestamp="1605863454184" />
-    <state x="-940" y="323" key="NewPhpFileDialog" timestamp="1606656252878">
+    <state x="-1052" y="233" key="NewPhpClassDialog/0.0.1680.1020/-1680.0.1680.1020@-1680.0.1680.1020" timestamp="1606886243355" />
+    <state x="628" y="233" key="NewPhpClassDialog/0.0.1680.1020/-1680.0.1680.1020@0.0.1680.1020" timestamp="1606988364520" />
+    <state x="-940" y="323" key="NewPhpFileDialog" timestamp="1606887713522">
       <screen x="-1680" y="0" width="1680" height="1020" />
     </state>
-    <state x="-940" y="323" key="NewPhpFileDialog/0.0.1680.1020/-1680.0.1680.1020@-1680.0.1680.1020" timestamp="1606656252878" />
+    <state x="-940" y="323" key="NewPhpFileDialog/0.0.1680.1020/-1680.0.1680.1020@-1680.0.1680.1020" timestamp="1606887713522" />
     <state x="674" y="433" key="NewPhpFileDialog/0.0.1680.1020/-1680.0.1680.1020@0.0.1680.1020" timestamp="1605930240061" />
+    <state x="219" y="-13" width="1243" height="1007" maximized="true" key="dock-window-1" timestamp="1606881574519">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="219" y="-13" width="1243" height="1007" maximized="true" key="dock-window-1/0.0.1680.1020/-1680.0.1680.1020@-1680.0.1680.1020" timestamp="1606881574519" />
+    <state x="309" y="-16" width="1243" height="1007" maximized="true" key="dock-window-2" timestamp="1606886266857">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="309" y="-16" width="1243" height="1007" maximized="true" key="dock-window-2/0.0.1680.1020/-1680.0.1680.1020@-1680.0.1680.1020" timestamp="1606886266857" />
     <state x="-1184" y="235" key="run.anything.popup" timestamp="1606099720727">
       <screen x="-1680" y="0" width="1680" height="1020" />
     </state>

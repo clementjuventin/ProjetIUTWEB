@@ -138,23 +138,4 @@ class Task
     public function getHour(){
         return  date('h:i',strtotime($this->date));;
     }
-
-    public function __toString()
-    {
-        $settings = '
-                   <button type="button" class="btn btn-danger" style="width: 2.5em"><i class="fas fa-times"></i></button>
-                   <button type="button" class="btn btn-success" style="width: 2.5em"><i class="fas fa-check"></i></button>
-                   <button type="button" class="btn btn-primary" style="width: 2.5em" value="'.$this->getId().'"><i class="fas fa-cog"></i></button>
-        ';
-        return '<tr style="background-color: '.$this->getColor().';">
-                    <th scope="row">'.($this->isPublic()?"<i class=\"fas fa-lock-open\"></i>":"<i class=\"fas fa-lock\"></i>").'</th>
-                    <td>'.$this->getTitre().'</td>
-                    <td>'.$this->getDescription().'</td>
-                    <td>'.$this->getHour().'</td>
-                    <td class="hiddenButton">'.$settings.'</td>
-                </tr>
-                ';
-    }
-
-
 }

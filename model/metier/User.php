@@ -24,6 +24,13 @@ class User
     {
         return $this->login;
     }
+    /**
+     * @return mixed
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
 
     /**
      * @param mixed $login

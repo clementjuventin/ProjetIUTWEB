@@ -1,103 +1,109 @@
 <?php
 
-//chargement bibliothèque
-require_once(__DIR__.'/Validation.php');
-require_once(__DIR__.'/Connexion.php');
-require_once(__DIR__.'/../gateway/GatewayUser.php');
-require_once(__DIR__.'/../metier/User.php');
 
-//chargement config
-include_once(__DIR__.'/../config/Config.php');
-
-$dataVueErreur = array ();
-
-try{
-    session_start();
-
-    $connexion = new Connexion($base,$login,$mdp);
-
-    if(isset($_SESSION['user'])){
-        $user = $_SESSION['user'];
-    }else{
-        $user = new User("public","");
-        $_SESSION['user'] = $user;
-    }
-
-    $action=$_REQUEST['action'];
-
-    switch($action) {
-        case "signIn":
-            SignIn($_POST['login'],$_POST['password']);
-            break;
-        case "public":
-            SignIn("public","public");
-            break;
-        case "signUpRedirect":
-            SignUpRedirect();
-            break;
-        case "signUp":
-            SignUp($_POST['login'],$_POST['password'],$_POST['cpassword']);
-            break;
-        default:
-            session_destroy();
-            Reinit();
-    }
-} catch (PDOException $e)
+class SessionControler
 {
-    $dataVueErreur["PDOException"] = $e->getMessage();
-    require (__DIR__.'/../vues/erreur.php');
-} catch (Exception $e2)
-{
-    $dataVueErreur["Exception"] =	$e2->getMessage();
-    require (__DIR__.'/../vues/erreur.php');
-}
-exit(0);
 
-function Reinit()  {
-    require (__DIR__.'/../vues/head.php');
-    require (__DIR__.'/../vues/login.php');
-    require (__DIR__.'/../vues/footer.php');
-}
-function SignIn($login,$password) {
-    global $connexion;
-    global $dataVueErreur;
+    private $connexion;
+    private $vues;
+    private $dataVueErreur;
+    private $user;
+    /**
+     * SessionControler constructor.
+     */
+    public function __construct()
+    {
+        include_once(__DIR__ . '/../config/config.php');              //Config
 
-    $gtw = new GatewayUser($connexion);
+        $this->vues = $vues;                                        //Récupère les vues
 
-    Validation::val_SignIn($login,$password,$dataVueErreur);
-    $bool = $gtw->signIn($login,$password,$dataVueErreur);
-    if($bool){
-        session($login, $password);
-        $_REQUEST['action'] = "displayTask";
-        header('Location: PanelControler.php?action=displayTask');
-    }else{
-        Reinit();
+        //session_start();                                    //Session
+        $this->connexion = new Connexion($base, $login, $mdp);              //Connexion
+        $this->dataVueErreur = array();                                  //Tableau erreur
+
+        if (isset($_SESSION['user'])) {
+            $this->user = $_SESSION['user'];
+        } else {
+            $this->Session("public", "public");
+        }
+        if (isset($_REQUEST['action'])) {
+            $action = $_REQUEST['action'];
+        } else {
+            $action = "NULL";
+        }
+        try {
+            switch ($action) {
+                case "NULL":
+                    $this->Reinit();
+                    break;
+                case "signIn":
+                    $this->SignIn($_POST['login'], $_POST['password']);
+                    break;
+                case "public":
+                    $this->SignIn($this->user->getLogin(), $this->user->getPassword());
+                    break;
+                case "signUpRedirect":
+                    $this->SignUpRedirect();
+                    break;
+                case "signUp":
+                    $this->SignUp($_POST['login'], $_POST['password'], $_POST['cpassword']);
+                    break;
+                default:
+                    $this->dataVueErreur['action'] = "Action non prise en compte par le controleur";
+                    require($this->vues['head']['url']);
+                    require($vues['erreur']['url']);
+            }
+        } catch (PDOException $e) {
+            $this->dataVueErreur["PDOException"] = $e->getMessage();
+            require($this->vues['head']['url']);
+            require($vues['erreur']['url']);
+        } catch (Exception $e2) {
+            $this->dataVueErreur["Exception"] = $e2->getMessage();
+            require($this->vues['head']['url']);
+            require($vues['erreur']['url']);
+        }
+        exit(0);
     }
-}
-function SignUp($login,$password,$cpassword) {
-    global $connexion;
-    global $dataVueErreur;
 
-    $gtw = new GatewayUser($connexion);
+    function SignIn($login,$password) {
+        Validation::val_SignIn($login,$password,$this->dataVueErreur);
 
-    $bool=false;
-    if(Validation::val_SignUp($login,$password,$cpassword,$dataVueErreur)){
-        $bool = $gtw->signUp($login,$password,$dataVueErreur);
+        $bool = UserModel::SignIn($this->connexion,$login,$password,$this->dataVueErreur);
+
+        if($bool){
+            $this->Session($login, $password);
+            $_REQUEST['action'] = "displayTask";
+            header('Location: userInterface.php?action=displayTask');
+        }else{
+            $this->dataVueErreur['Login']="Problème lors de l'identification";
+            $this->Reinit();
+        }
     }
-    if($bool){
-        require (__DIR__.'/../vues/login.php');
-    }else{
-        SignUpRedirect();
+    function SignUp($login,$password,$cpassword) {
+
+        $bool=false;
+        if(Validation::val_SignUp($login,$password,$cpassword,$this->dataVueErreur)){
+            $bool = UserModel::SignUp($this->connexion,$login,$password,$this->dataVueErreur);
+        }
+        if($bool){
+            require($this->vues['login']['url']);
+        }else{
+            $this->SignUpRedirect();
+        }
     }
-}
-function SignUpRedirect(){
-    require (__DIR__.'/../vues/signUp.php');
-}
+    function SignUpRedirect(){
+        require($this->vues['signUp']['url']);
+    }
 
-function session($login, $password){
-    session_start();
-    $user = new User($login, $password);
+    function Session($login, $password){
+        session_start();
+        $this->user = new User($login, $password);
 
-    $_SESSION['user'] = $user;
-    //var_dump(session_id());
+        $_SESSION['user'] = $this->user;
+    }
+    function Reinit(){
+        require($this->vues['head']['url']);
+        require($this->vues['login']['url']);
+        require($this->vues['footer']['url']);
+    }
 }

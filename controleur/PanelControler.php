@@ -1,100 +1,95 @@
 <?php
 
-//chargement bibliothèque
-require_once(__DIR__.'/Validation.php');
-require_once(__DIR__.'/Connexion.php');
-require_once(__DIR__.'/../gateway/GatewayTask.php');
-require_once(__DIR__.'/../gateway/GatewayUser.php');
-require_once(__DIR__.'/../metier/Task.php');
-require_once(__DIR__.'/../metier/User.php');
 
-//chargement config
-include_once(__DIR__.'/../config/Config.php');
+class PanelControler
+{
+    private $connexion;
+    private $vues;
+    private $dataVueErreur;
+    /**
+     * SessionControler constructor.
+     */
+    public function __construct()
+    {
+        include_once(__DIR__ . '/../config/config.php');              //Config
 
-$dataVueErreur = array ();
+        $this->vues = $vues;                                        //Récupère les vues
 
-try{
-    session_start();
+        //session_start();                                    //Session
+        $this->connexion = new Connexion($base, $login, $mdp);              //Connexion
+        $this->dataVueErreur = array();                                  //Tableau erreur
 
-    $connexion = new Connexion($base,$login,$mdp);
+        session_start();
 
-    /*
-    if(isset($_SESSION['user'])){
+        if (isset($_REQUEST['action'])) {
+            $action = $_REQUEST['action'];
+        } else {
+            $action = NULL;
+        }
+        try {
+            switch ($action) {
+                case "logOut":
+                    header('Location: index.php?action=NULL');
+                    break;
+                case "addTask":
+                    $this->initAddTask();
+                    break;
+                case "addTaskSubmit":
+                    $this->pushTask();
+                    break;
+                case "displayTask":
+                    $this->displayInterface();
+                    break;
+                default:
+                    $this->dataVueErreur['action'] = "Action non prise en compte par le controleur";
+                    require($this->vues['head']['url']);
+                    require($vues['erreur']['url']);
+            }
+        } catch (PDOException $e) {
+            $this->dataVueErreur["PDOException"] = $e->getMessage();
+            require($this->vues['head']['url']);
+            require($vues['erreur']['url']);
+        } catch (Exception $e2) {
+            $this->dataVueErreur["Exception"] = $e2->getMessage();
+            require($this->vues['head']['url']);
+            require($vues['erreur']['url']);
+        }
+        exit(0);
+    }
+
+    function initAddTask() {
+        require ($this->vues['head']['url']);
+        require ($this->vues['header']['url']);
+        require ($this->vues['addTask']['url']);
+        require ($this->vues['footer']['url']);
+    }
+    function pushTask() {
+        //Sous case cochée
+        //mail(<adresse du destinataire>,<titre du mail>,<corps du message>);
+
         $user = $_SESSION['user'];
-    }else{
-        $user = new User("public","");
-        $_SESSION['user'] = $user;
+
+        $task = new Task($_POST['title'],$_POST['comment'],$user,date('Y-m-d h:i',mktime($_POST['hour'], $_POST['min'], 0, $_POST['month'], $_POST['day'], $_POST['year'])),$_POST['color'],0);
+        Validation::fil_Task($task,$this->dataVueErreur);
+
+        TaskModel::PushTask($this->connexion,$task);
+
+        header('Location: userInterface.php?action=displayTask');
     }
-    */
+    function displayInterface(){
+        $user = $_SESSION['user'];
 
-    $action=$_REQUEST['action'];
+        $task = TaskModel::Pulltask($this->connexion,$user,date("Y-m-d"));
 
-    switch($action) {
-        case "addTask":
-            initAddTask();
-            break;
-        case "addTaskSubmit":
-            pushTask();
-            break;
-        case "displayTask":
-            displayInterface();
-            break;
-        default:
-            $_REQUEST['action'] = "logOut";
-            header('Location: SessionControler.php');
+        require ($this->vues['head']['url']);
+        require ($this->vues['header']['url']);
+        require ($this->vues['toDoList']['url']);
+        require ($this->vues['footer']['url']);
     }
-} catch (PDOException $e)
-{
-    $dataVueErreur["PDOException"] = $e->getMessage();
-    require (__DIR__.'/../vues/erreur.php');
-} catch (Exception $e2)
-{
-    $dataVueErreur["Exception"] =	$e2->getMessage();
-    require (__DIR__.'/../vues/erreur.php');
-}
-exit(0);
+    function Session($login, $password){
+        session_start();
+        $this->user = new User($login, $password);
 
-function initAddTask() {
-    require (__DIR__.'/../vues/head.php');
-    require (__DIR__.'/../vues/header.php');
-    require (__DIR__.'/../vues/addTask.php');
-    require (__DIR__.'/../vues/footer.php');
-}
-function pushTask() {
-    //Sous case cochée
-    //mail(<adresse du destinataire>,<titre du mail>,<corps du message>);
-
-    global $connexion;
-    global $dataVueErreur;
-
-    $user = $_SESSION['user'];
-    $gtw = new GatewayTask($connexion);
-
-    $task = new Task($_POST['title'],$_POST['comment'],$user,date('Y-m-d h:i',mktime($_POST['hour'], $_POST['min'], 0, $_POST['month'], $_POST['day'], $_POST['year'])),$_POST['color'],0);
-    Validation::fil_Task($task,$dataVueErreur);
-
-    $gtw->pushTask($task);
-
-    header('Location: PanelControler.php?action=displayTask');
-}
-function displayInterface(){
-    global $connexion;
-    global $dataVueErreur;
-
-    $user = $_SESSION['user'];
-
-    $gtw = new GatewayTask($connexion);
-
-    $task = $gtw->buildDailyTaskForUser($user, date("Y-m-d"));
-    if($user->getLogin()!="public"){
-        $task = array_merge($gtw->buildDailyTaskForUser(new User("public","public"), date("Y-m-d")),$task);
+        $_SESSION['user'] = $this->user;
     }
-
-    require (__DIR__.'/../vues/head.php');
-    require (__DIR__.'/../vues/header.php');
-    require (__DIR__.'/../vues/toDoList.php');
-    require (__DIR__.'/../vues/footer.php');
-}
-function makeCookie(){
-    //setcookie("titre", "desc", time()+365*24*3600);
 }

@@ -13,6 +13,8 @@
         padding: 30px;
         margin-left: auto;
         margin-right: auto;
+        top: 50%;
+        bottom: 50%;
         background: #191919;
         text-align: center;
         border-radius: 25px;
@@ -57,7 +59,6 @@
     .box input[type = "text"]:focus,.box input[type = "password"]:focus{
         width: 250px;
         border-color: #20bf6b;
-
     }
 
     .box a{
@@ -75,6 +76,7 @@
         transition: 0.25s;
         text-decoration: none;
     }
+
 
     .box input[type = "submit"]{
         border: 0px;
@@ -96,49 +98,46 @@
     .box input[type = "submit"]:focus{
         border-color: #20bf6b;
     }
-
 </style>
 <html lang="fr" dir="ltr">
 <head>
     <meta charset="utf-8">
-    <title>Inscription</title>
+    <title>Homepage</title>
+
+
 </head>
-<body class="inscription">
+<body>
 <div class="box">
-    <form method="post">
-        <h1>Inscription</h1>
-        <input type="text" name="login" placeholder="Nom d'utilisateur" required>
-        <span style="color: #b32323;">
-        <?php
-        global $dataVueErreur;
-        if(isset($dataVueErreur)){
-            if(isset($dataVueErreur['Login'])){
-                echo $dataVueErreur['Login'];
-                $dataVueErreur['Login'] = NULL;
-            }
-        }
-        ?>
-    </span>
+    <form   method="post">
+        <h1>Todo List</h1>
+        <input type="text" name="login" placeholder="Nom d'utilisateur">
         <input type="password" name="password" placeholder="Mot de passe" required>
-        <input type="password" name="cpassword" placeholder="Confirmer Mot de passe" required>
         <span style="color: #b32323;">
         <?php
-        global $dataVueErreur;
-        if(isset($dataVueErreur)){
-            if(isset($dataVueErreur['Password'])){
-                echo $dataVueErreur['Password'];
-                $dataVueErreur['Password'] = NULL;
+        if(isset($this->dataVueErreur)){
+            if(isset($this->dataVueErreur['Login'])){
+                echo $this->dataVueErreur['Login'];
+                $this->dataVueErreur['Login'] = NULL;
             }
         }
         ?>
-    </span>
-        <input type="submit" name="inscription" value="Inscription" id="inscription">
-        <input type="hidden" name="action" value="signUp">
+        </span>
+        <input type="submit" name="connexion" value="Connexion" required>
+        <input type="hidden" name="action" value="signIn">
     </form>
-    <form  method="post">
-        <input type="submit" name="connexion" value="Retour" id="login" required><i class="fas fa-angle-double-left"></i>
-        <input type="hidden" name="action" value="NULL">
+    <form>
+        <input type="submit" name="inscription" value="Profil publique">
+        <input type="hidden" name="action" value="public">
+    </form>
+    <form>
+        <input type="submit" name="inscription" value="Inscription">
+        <input type="hidden" name="action" value="signUpRedirect">
     </form>
 </div>
+
+
+
 </body>
+
+
 </html>
