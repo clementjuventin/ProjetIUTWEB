@@ -14,9 +14,11 @@
             <li class="nav-item active">
                 <a class="nav-link" href="#">Todolist<span class="sr-only">(current)</span></a>
             </li>
+            <!--
             <li class="nav-item">
                 <a class="nav-link" href="#">Journal</a>
             </li>
+            -->
             <li class="nav-item">
                 <form style="display: inline-block;" class="form-inline">
                     <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">

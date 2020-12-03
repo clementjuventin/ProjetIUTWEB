@@ -17,7 +17,6 @@ class SessionControler
 
         $this->vues = $vues;                                        //Récupère les vues
 
-        //session_start();                                    //Session
         $this->connexion = new Connexion($base, $login, $mdp);              //Connexion
         $this->dataVueErreur = array();                                  //Tableau erreur
 

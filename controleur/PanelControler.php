@@ -15,11 +15,11 @@ class PanelControler
 
         $this->vues = $vues;                                        //Récupère les vues
 
-        //session_start();                                    //Session
+        session_start();                                    //Session
+        
         $this->connexion = new Connexion($base, $login, $mdp);              //Connexion
         $this->dataVueErreur = array();                                  //Tableau erreur
 
-        session_start();
 
         if (isset($_REQUEST['action'])) {
             $action = $_REQUEST['action'];
