@@ -50,16 +50,16 @@ class SessionControler
                 default:
                     $this->dataVueErreur['action'] = "Action non prise en compte par le controleur";
                     require($this->vues['head']['url']);
-                    require($vues['erreur']['url']);
+                    require($this->vues['erreur']['url']);
             }
         } catch (PDOException $e) {
             $this->dataVueErreur["PDOException"] = $e->getMessage();
             require($this->vues['head']['url']);
-            require($vues['erreur']['url']);
+            require($this->vues['erreur']['url']);
         } catch (Exception $e2) {
             $this->dataVueErreur["Exception"] = $e2->getMessage();
             require($this->vues['head']['url']);
-            require($vues['erreur']['url']);
+            require($this->vues['erreur']['url']);
         }
         exit(0);
     }
