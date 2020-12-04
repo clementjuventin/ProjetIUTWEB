@@ -15,7 +15,7 @@
             <thead>
                 <tr>
                     <th scope="col"><i class="fas fa-key"></i></th>
-                    <th scope="col"><i class="fas fa-thumbtack"></i> Tâche</th>
+                    <th scope="col"><i class="fas fa-thumbtack"></i> T&acirc;che</th>
                     <th scope="col"><i class="fas fa-comment-dots"></i> Commentaire</th>
                     <th scope="col"><i class="fas fa-clock"></i> Heure</th>
                     <th scope="col"></th>

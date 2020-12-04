@@ -1,6 +1,6 @@
-<body class="bodyL">
+<body class="bodyL" style="background-color:<?php echo ViewModel::getColor(); ?>;">
     <div class="box">
-        <form   method="post">
+        <form method="post">
             <h1>Todo List</h1>
             <input type="text" name="login" placeholder="Nom d'utilisateur">
             <input type="password" name="password" placeholder="Mot de passe" required>

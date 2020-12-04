@@ -1,4 +1,4 @@
-<body class="inscription bodyL">
+<body class="inscription bodyL" style="background-color:<?php echo ViewModel::getColor(); ?>;">
     <div class="box">
         <form method="post">
             <h1>Inscription</h1>

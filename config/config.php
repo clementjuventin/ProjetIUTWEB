@@ -35,3 +35,5 @@ require_once(__DIR__ . '\..\model\metier\User.php');
 
 require_once(__DIR__ . '\..\model\TaskModel.php');
 require_once(__DIR__ . '\..\model\UserModel.php');
+require_once(__DIR__ . '\..\model\ViewModel.php');
+
