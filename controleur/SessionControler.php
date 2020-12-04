@@ -74,7 +74,7 @@ class SessionControler
             $_REQUEST['action'] = "displayTask";
             header('Location: userInterface.php?action=displayTask');
         }else{
-            $this->dataVueErreur['Login']="Problème lors de l'identification";
+            $this->dataVueErreur['Login']="Probl&egrave;me lors de l'identification";
             $this->Reinit();
         }
     }

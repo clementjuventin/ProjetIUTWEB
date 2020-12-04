@@ -4,28 +4,28 @@ class Validation {
 
     static function val_SignIn(string &$login, string &$passwd, array &$dataVueErreur) {
         if(!isset($login)||$login==""){
-            $dataVueErreur['Login'] = "Identifiant non entré.";
+            $dataVueErreur['Login'] = "Identifiant non entr&eacute;";
         }
         if(!isset($passwd)||$passwd==""){
-            $dataVueErreur['Password'] = "Mot de passe non entré.";
+            $dataVueErreur['Password'] = "Mot de passe non entr&eacute;";
         }
     }
     static function val_SignUp(string &$login, string &$passwd, string &$cpasswd, array &$dataVueErreur):bool {
         if($passwd!=$cpasswd){
-            $dataVueErreur['Password'] = "Les mots de passe saisis ne sont pas identiques.";
+            $dataVueErreur['Password'] = "Les mots de passe saisis ne sont pas identiques";
             return false;
         }
         if(!isset($login)||$login==""){
-            $dataVueErreur['Login'] = "Identifiant ou mot de passe non entré.";
+            $dataVueErreur['Login'] = "Identifiant ou mot de passe non entr&eacute;";
             return false;
         }
         if(!isset($passwd)||$passwd==""||!isset($cpasswd)||$cpasswd==""){
-            $dataVueErreur['Password'] = "Identifiant ou mot de passe non entré.";
+            $dataVueErreur['Password'] = "Identifiant ou mot de passe non entr&eacute;";
             return false;
         }
         if (filter_var($login, FILTER_SANITIZE_STRING)!=$login)//Utiliser validate
         {
-            $dataVueErreur['Login'] = "Caractères utilisés incorrectes";
+            $dataVueErreur['Login'] = "Caract&egrave;res utilis&eacute;s incorrectes";
             $login="";
             return false;
         }
@@ -35,7 +35,7 @@ class Validation {
     static function fil_Task(Task &$task,&$dataVueErreur){
         $tmp = $task->getTitre();
         if(!isset($tmp)||$tmp==""){
-            $dataVueErreur['Titre'] = "Aucun titre renseigné.";
+            $dataVueErreur['Titre'] = "Aucun titre renseign&eacute;";
         }
         $task->setTitre(filter_var($tmp, FILTER_SANITIZE_STRING));
         $tmp = $task->getDescription();

@@ -21,11 +21,12 @@ class GatewayUser
 
         $results = $this->connexion->getResults();
 
-        if(!password_verify($password, $results[0]['password'])||!$this->connexion->getSucceed()) {
-            $dataVueErreur["Login"] =	"Mot de passe ou identifiant invalide";
-            return false;
+        if($this->connexion->getSucceed()){
+            if(password_verify($password, $results[0]['password'])){
+                return true;
+            }
         }
-        return true;
+        return false;
     }
     public function signUp($login, $password, &$dataVueErreur): bool
     {
@@ -39,7 +40,7 @@ class GatewayUser
             $this->connexion->executeQuery($query, array(':login' => array($login, PDO::PARAM_STR),
                 ':password' => array($password, PDO::PARAM_STR)));
         }catch (PDOException $e){
-            $dataVueErreur['Login']="L'identifiant saisie existe déjà";
+            $dataVueErreur['Login']="L'identifiant saisie existe d&eacute;j&agrave;";
             return false;
         }
         return true;
