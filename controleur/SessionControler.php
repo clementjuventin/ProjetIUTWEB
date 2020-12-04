@@ -91,6 +91,7 @@ class SessionControler
         }
     }
     function SignUpRedirect(){
+        require($this->vues['head']['url']);
         require($this->vues['signUp']['url']);
     }
 

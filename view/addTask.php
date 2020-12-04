@@ -94,7 +94,7 @@
             ?>
         </div>
         <div style="margin-top: 1em">
-            <button type="submit" class="btn btn-success btn-lg btn-block"><i class="fas fa-check"></i> Ajouter la tâche</button>
+            <button type="submit" class="btn btn-success btn-lg btn-block"><i class="fas fa-check"></i> Ajouter la tache</button>
             <input type="hidden" name="action" value="addTaskSubmit">
         </div>
     </form>

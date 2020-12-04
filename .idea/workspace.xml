@@ -22,17 +22,18 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\IUTTPWEB\testProjet\view\css" />
+      <recent name="C:\wamp64\www\IUTTPWEB\testProjet" />
+      <recent name="C:\wamp64\www\IUTTPWEB\testProjet\controleur" />
       <recent name="C:\wamp64\www\IUTTPWEB\testProjet\model" />
       <recent name="C:\wamp64\www\IUTTPWEB\testProjet\dataBase" />
-      <recent name="C:\wamp64\www\IUTTPWEB\testProjet\controleur" />
-      <recent name="C:\wamp64\www\IUTTPWEB\testProjet\model\metier" />
-      <recent name="C:\wamp64\www\IUTTPWEB\testProjet" />
     </key>
   </component>
   <component name="RunManager">
@@ -64,7 +65,9 @@
       <workItem from="1606553167540" duration="19166000" />
       <workItem from="1606875378683" duration="9556000" />
       <workItem from="1606973204984" duration="572000" />
-      <workItem from="1606986830738" duration="3989000" />
+      <workItem from="1606986830738" duration="4627000" />
+      <workItem from="1606998427829" duration="1346000" />
+      <workItem from="1607068175868" duration="984000" />
     </task>
     <servers />
   </component>
@@ -90,10 +93,10 @@
     </state>
     <state x="-1110" y="257" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1680.1020/-1680.0.1680.1020@-1680.0.1680.1020" timestamp="1605923429075" />
     <state x="570" y="257" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1680.1020/-1680.0.1680.1020@0.0.1680.1020" timestamp="1605636740674" />
-    <state x="620" y="265" key="FileChooserDialogImpl" timestamp="1605921065689">
+    <state x="620" y="265" key="FileChooserDialogImpl" timestamp="1607002460193">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
-    <state x="620" y="265" key="FileChooserDialogImpl/0.0.1680.1020/-1680.0.1680.1020@0.0.1680.1020" timestamp="1605921065689" />
+    <state x="620" y="265" key="FileChooserDialogImpl/0.0.1680.1020/-1680.0.1680.1020@0.0.1680.1020" timestamp="1607002460193" />
     <state x="628" y="233" key="NewPhpClassDialog" timestamp="1606988364520">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>

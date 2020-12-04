@@ -1,3 +1,8 @@
+<style>
+    body{
+        background-color: #8e44ad;
+    }
+</style>
 <div style="height: 100px;">
 
 </div>                                                                  <!--position:fixed;top: 0;-->
@@ -56,7 +61,7 @@
                     </select>
                 </form>
                 <form style="display: inline-block;">
-                    <button type="submit" class="btn btn-success"><i class="fas fa-plus"></i> Ajouter une tâche</button>
+                    <button type="submit" class="btn btn-success"><i class="fas fa-plus"></i> Ajouter une tache</button>
                     <input type="hidden" name="action" value="addTask">
                 </form>
             </li>
