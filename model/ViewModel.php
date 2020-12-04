@@ -8,7 +8,6 @@ class ViewModel
     public static function getColors(){
         return ViewModel::$colors;
     }
-    
     public static function getColor():string{
         return ViewModel::$colors[rand(0,count(ViewModel::$colors)-1)];
     }
