@@ -1,8 +1,3 @@
-<style>
-    body{
-        background-color: #8e44ad;
-    }
-</style>
 <div style="height: 100px;">
 
 </div>                                                                  <!--position:fixed;top: 0;-->
