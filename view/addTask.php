@@ -8,6 +8,7 @@
         width: 4rem;
     }
 </style>
+
 <div class="container">
     <form style="display: inline-block;">
         <button type="submit" class="btn btn-primary"><i class="fas fa-angle-double-left"></i> Annuler</button>
@@ -37,7 +38,7 @@
             <select name="month" id="month" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
                 <?php
                 $m = (int)date("m")-1;
-                $month = array("Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre");
+                $month = array("Janvier","F&eacute;vrier","Mars","Avril","Mai","Juin","Juillet","Ao&ucirc;t","Septembre","Octobre","Novembre","D&eacute;cembre");
                 for ($i = 0; $i < 12; $i++) {
                     if($i==$m){
                         echo '<option value="'.($i+1).'" selected="selected">'.$month[$i].'</option>';
@@ -94,7 +95,7 @@
             ?>
         </div>
         <div style="margin-top: 1em">
-            <button type="submit" class="btn btn-success btn-lg btn-block"><i class="fas fa-check"></i> Ajouter la tache</button>
+            <button type="submit" class="btn btn-success btn-lg btn-block"><i class="fas fa-check"></i> Ajouter la t&acirc;che</button>
             <input type="hidden" name="action" value="addTaskSubmit">
         </div>
     </form>

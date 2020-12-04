@@ -7,7 +7,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
         <form style="display: inline-block;">
-            <button type="submit" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Déconnexion</button>
+            <button type="submit" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> D&eacute;connexion</button>
             <input type="hidden" name="action" value="logOut">
         </form>
         <ul class="navbar-nav mr-auto">
@@ -36,7 +36,7 @@
                     <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
                         <?php
                         $m = (int)date("m")-1;
-                        $month = array("Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre");
+                        $month = array("Janvier","F&eacute;vrier","Mars","Avril","Mai","Juin","Juillet","Ao&ucirc;t","Septembre","Octobre","Novembre","D&eacute;cembre");
                         for ($i = 0; $i < 12; $i++) {
                             if($i==$m){
                                 echo '<option value="'.$month[$i].'" selected="selected">'.$month[$i].'</option>';
@@ -56,7 +56,7 @@
                     </select>
                 </form>
                 <form style="display: inline-block;">
-                    <button type="submit" class="btn btn-success"><i class="fas fa-plus"></i> Ajouter une tache</button>
+                    <button type="submit" class="btn btn-success"><i class="fas fa-plus"></i> Ajouter une t&acirc;che</button>
                     <input type="hidden" name="action" value="addTask">
                 </form>
             </li>
