@@ -60,7 +60,7 @@
                     <input type="hidden" name="action" value="addTask">
                 </form>
 s
-                
+
             </li>
         </ul>
     </div>
