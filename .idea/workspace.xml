@@ -22,7 +22,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../myWebSite" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -68,6 +68,7 @@
       <workItem from="1606986830738" duration="4627000" />
       <workItem from="1606998427829" duration="1346000" />
       <workItem from="1607068175868" duration="6418000" />
+      <workItem from="1607492763295" duration="19000" />
     </task>
     <servers />
   </component>
