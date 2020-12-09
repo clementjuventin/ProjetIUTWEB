@@ -85,7 +85,7 @@ class SessionControler
             $bool = UserModel::SignUp($this->connexion,$login,$password,$this->dataVueErreur);
         }
         if($bool){
-            require($this->vues['head']['url']);a
+            require($this->vues['head']['url']);
             require($this->vues['login']['url']);
         }else{
             $this->SignUpRedirect();
