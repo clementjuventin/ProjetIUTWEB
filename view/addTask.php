@@ -22,7 +22,7 @@
                 <textarea class="form-control" id="comment" rows="3" name="comment" placeholder="Commentaire"></textarea>
             </div>
             <div class="form-group" style="display: flex;">
-                <select name="day" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                <select name="day" class="custom-select my-1 mr-sm-2" id="jour" onchange="addTaskDayChange()">
                     <?php
                     $day = (int)date("d");
                     var_dump($day);
@@ -35,7 +35,7 @@
                     }
                     ?>
                 </select>
-                <select name="month" id="month" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                <select name="month" id="month" class="custom-select my-1 mr-sm-2" id="mois" onchange="addTaskMonthChange()">
                     <?php
                     $m = (int)date("m")-1;
                     $month = array("Janvier","F&eacute;vrier","Mars","Avril","Mai","Juin","Juillet","Ao&ucirc;t","Septembre","Octobre","Novembre","D&eacute;cembre");
@@ -48,7 +48,7 @@
                     }
                     ?>
                 </select>
-                <select name="year" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                <select name="year" class="custom-select my-1 mr-sm-2" id="annee">
                     <?php
                     $year = (int)date("Y");
                     for ($i = $year; $i <= $year+10; $i++) {

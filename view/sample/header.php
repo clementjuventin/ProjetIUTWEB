@@ -21,7 +21,7 @@
             -->
             <li class="nav-item">
                 <form style="display: inline-block;" class="form-inline">
-                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                    <select class="custom-select my-1 mr-sm-2" id="day" onchange="dayChange()">
                         <?php
                         $day = (int)date("d");
                         for ($i = 1; $i <= 31; $i++) {
@@ -33,7 +33,7 @@
                         }
                         ?>
                     </select>
-                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                    <select class="custom-select my-1 mr-sm-2" id="month" onchange="monthChange()">
                         <?php
                         $m = (int)date("m")-1;
                         $month = array("Janvier","F&eacute;vrier","Mars","Avril","Mai","Juin","Juillet","Ao&ucirc;t","Septembre","Octobre","Novembre","D&eacute;cembre");
@@ -46,7 +46,7 @@
                         }
                         ?>
                     </select>
-                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                    <select class="custom-select my-1 mr-sm-2" id="year" onchange="yearChange()">
                         <?php
                         $year = (int)date("Y");
                         for ($i = $year; $i <= $year+10; $i++) {
@@ -59,9 +59,18 @@
                     <button type="submit" class="btn btn-success"><i class="fas fa-plus"></i> Ajouter une t&acirc;che</button>
                     <input type="hidden" name="action" value="addTask">
                 </form>
-s
-
             </li>
         </ul>
     </div>
 </nav>
+<script>
+    function dayChange(){
+        console.log(document.getElementById('day').value)
+    }
+    function monthChange(){
+        console.log(document.getElementById('month').value)
+    }
+    function yearChange(){
+        console.log(document.getElementById('year').value)
+    }
+</script>
