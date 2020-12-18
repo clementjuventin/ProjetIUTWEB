@@ -30,11 +30,8 @@ class FrontControler
 
         try {
             switch ($action) {
-                case "logOut":
-                    header('Location: index.php?action=NULL');
-                    break;
-                case "addTask":
-                    $this->initAddTask();
+                case "NULL":
+                    $this->displayInterface();
                     break;
                 default:
                     $this->dataVueErreur['action'] = "Action non prise en compte par le controleur";
@@ -56,7 +53,7 @@ class FrontControler
     function displayInterface(){
         $user = $_SESSION['user'];
 
-        $task = TaskModel::Pulltask($this->connexion,$user,date("Y-m-d"));
+        $list = TaskModel::PullList($this->connexion,$user);
 
         require ($this->vues['head']['url']);
         require ($this->vues['header']['url']);

@@ -22,6 +22,7 @@ $vues['addTask']=array('url'=>__DIR__.'\..\view/addTask.php');
 //Controllers
 $cont['contPanel']=array('url'=> __DIR__ . '\..\controleur\PanelControler.php');
 $cont['contUser']=array('url'=>__DIR__.'\..\controleur\SessionControler.php');
+$cont['frontCont']=array('url'=>__DIR__.'\..\controleur\FrontControler.php');
 
 //Classes
 require_once(__DIR__ . '\Validation.php');
@@ -29,6 +30,7 @@ require_once(__DIR__ . '\Validation.php');
 require_once(__DIR__ . '\..\dataBase\Connexion.php');
 require_once(__DIR__ . '\..\dataBase\gateway\GatewayTask.php');
 require_once(__DIR__ . '\..\dataBase\gateway\GatewayUser.php');
+require_once(__DIR__ . '\..\dataBase\gateway\GatewayList.php');
 
 require_once(__DIR__ . '\..\model\metier\Task.php');
 require_once(__DIR__ . '\..\model\metier\User.php');

@@ -1,4 +1,4 @@
 <?php
-    require_once(__DIR__.'\controleur/SessionControler.php');
-    new SessionControler();
+    require_once(__DIR__.'\controleur/FrontControler.php');
+    new FrontControler();
 ?>
