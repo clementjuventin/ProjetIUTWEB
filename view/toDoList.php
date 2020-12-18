@@ -30,13 +30,11 @@
                                     <th scope="col"><i class="fas fa-key"></i></th>
                                     <th scope="col"><i class="fas fa-thumbtack"></i> T&acirc;che</th>
                                     <th scope="col"><i class="fas fa-comment-dots"></i> Commentaire</th>
-                                    <th scope="col"><i class="fas fa-clock"></i> Heure</th>
                                     <th scope="col"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
                       ';
-                var_dump($lis->getTaskArray());
                 foreach ($lis->getTaskArray() as $t){
                     $settings = '
                         <button type="button" class="btn btn-danger" style="width: 2.5em"><i class="fas fa-times"></i></button>

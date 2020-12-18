@@ -18,7 +18,7 @@ class GatewayTask
     }
 
     public function buildTask($id):array{
-        $query="SELECT * FROM task WHERE id=:id;";
+        $query="SELECT * FROM task WHERE listId=:id;";
 
         $this->connexion->executeQuery($query,array(':id'=>array($id,PDO::PARAM_STR)));
 

@@ -54,7 +54,6 @@ class FrontControler
 
         $list = TaskModel::PullList($this->connexion,$user);
         foreach ($list as $l){
-            var_dump($l);
             $l->addToList(TaskModel::Pulltask($this->connexion,$l->getId()));
         }
 
