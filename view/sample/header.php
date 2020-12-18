@@ -59,6 +59,10 @@
                     <button type="submit" class="btn btn-success"><i class="fas fa-plus"></i> Ajouter une t&acirc;che</button>
                     <input type="hidden" name="action" value="addTask">
                 </form>
+                <form style="display: inline-block;">
+                    <button type="submit" class="btn btn-success"><i class="fas fa-plus"></i> Ajouter une liste</button>
+                    <input type="hidden" name="action" value="addList">
+                </form>
             </li>
         </ul>
     </div>

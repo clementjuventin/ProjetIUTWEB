@@ -1,12 +1,10 @@
 <?php
 
-
 class Task
 {
     private $titre;
     private $description;
-    private $user;
-    private $date;
+    private $listId;
     private $color;
     private $id;
 
@@ -14,22 +12,18 @@ class Task
      * Task constructor.
      * @param $titre
      * @param $description
-     * @param $user
-     * @param $date
-     * @param $heure
+     * @param $listId
      * @param $color
      * @param $id
      */
-    public function __construct($titre, $description, $user, $date, $color, $id)
+    public function __construct($titre, $description, $listId, $color, $id)
     {
         $this->titre = $titre;
         $this->description = $description;
-        $this->user = $user;
-        $this->date = $date;
+        $this->listId = $listId;
         $this->color = $color;
         $this->id = $id;
     }
-
 
     /**
      * @return mixed
@@ -66,49 +60,17 @@ class Task
     /**
      * @return mixed
      */
-    public function getUser()
+    public function getListId()
     {
-        return $this->user;
+        return $this->listId;
     }
 
     /**
-     * @param mixed $user
+     * @param mixed $listId
      */
-    public function setUser($user)
+    public function setListId($listId)
     {
-        $this->user = $user;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDate()
-    {
-        return date('Y-m-d',strtotime($this->date));
-    }
-
-    /**
-     * @param mixed $date
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
+        $this->listId = $listId;
     }
 
     /**
@@ -127,15 +89,21 @@ class Task
         $this->color = $color;
     }
 
-    public function isPublic():bool{
-        return  $this->getUser()=="public";
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
-    public function isThisDay($date):bool{
-        return  strtotime($date)==strtotime($this->getDate());
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
-    public function getHour(){
-        return  date('h:i',strtotime($this->date));;
-    }
+
 }

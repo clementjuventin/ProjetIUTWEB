@@ -48,11 +48,6 @@ class Validation {
             $dataVueErreur['Color'] = "[ERR] Color";
         }
         $task->setColor(filter_var($tmp, FILTER_SANITIZE_STRING));
-        $tmp = $task->getDate().' '.$task->getHour();
-        if(!isset($tmp)||$tmp==""){
-            $dataVueErreur['Date'] = "[ERR] Date";
-        }
-        $task->setDate(filter_var($tmp, FILTER_SANITIZE_STRING));
     }
 }
 ?>

@@ -22,7 +22,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../myWebSite" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/reflexTrainingSoeman" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -69,6 +69,10 @@
       <workItem from="1606998427829" duration="1346000" />
       <workItem from="1607068175868" duration="6418000" />
       <workItem from="1607672987552" duration="1752000" />
+      <workItem from="1608110350357" duration="242000" />
+      <workItem from="1608110917671" duration="3174000" />
+      <workItem from="1608206792866" duration="3036000" />
+      <workItem from="1608301237476" duration="2045000" />
     </task>
     <servers />
   </component>
@@ -84,26 +88,26 @@
       <screen x="-1680" y="0" width="1680" height="1020" />
     </state>
     <state x="-1100" y="312" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1680.1020/-1680.0.1680.1020@-1680.0.1680.1020" timestamp="1606656063515" />
-    <state x="-1047" y="219" key="#com.intellij.ide.util.MemberChooser" timestamp="1606647654045">
-      <screen x="-1680" y="0" width="1680" height="1020" />
+    <state x="633" y="219" key="#com.intellij.ide.util.MemberChooser" timestamp="1608302575823">
+      <screen x="0" y="0" width="1680" height="1020" />
     </state>
     <state x="-1047" y="219" key="#com.intellij.ide.util.MemberChooser/0.0.1680.1020/-1680.0.1680.1020@-1680.0.1680.1020" timestamp="1606647654045" />
-    <state x="633" y="219" key="#com.intellij.ide.util.MemberChooser/0.0.1680.1020/-1680.0.1680.1020@0.0.1680.1020" timestamp="1605942782139" />
+    <state x="633" y="219" key="#com.intellij.ide.util.MemberChooser/0.0.1680.1020/-1680.0.1680.1020@0.0.1680.1020" timestamp="1608302575823" />
     <state x="-1110" y="257" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605923429075">
       <screen x="-1680" y="0" width="1680" height="1020" />
     </state>
     <state x="-1110" y="257" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1680.1020/-1680.0.1680.1020@-1680.0.1680.1020" timestamp="1605923429075" />
     <state x="570" y="257" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1680.1020/-1680.0.1680.1020@0.0.1680.1020" timestamp="1605636740674" />
-    <state x="-1060" y="265" key="FileChooserDialogImpl" timestamp="1607156713111">
+    <state x="-835" y="277" key="FileChooserDialogImpl" timestamp="1608206892913">
       <screen x="-1680" y="0" width="1680" height="1020" />
     </state>
-    <state x="-1060" y="265" key="FileChooserDialogImpl/0.0.1680.1020/-1680.0.1680.1020@-1680.0.1680.1020" timestamp="1607156713111" />
-    <state x="620" y="265" key="FileChooserDialogImpl/0.0.1680.1020/-1680.0.1680.1020@0.0.1680.1020" timestamp="1607002460193" />
-    <state x="628" y="233" key="NewPhpClassDialog" timestamp="1607069648165">
+    <state x="-835" y="277" key="FileChooserDialogImpl/0.0.1680.1020/-1680.0.1680.1020@-1680.0.1680.1020" timestamp="1608206892913" />
+    <state x="620" y="265" key="FileChooserDialogImpl/0.0.1680.1020/-1680.0.1680.1020@0.0.1680.1020" timestamp="1608110933752" />
+    <state x="628" y="233" key="NewPhpClassDialog" timestamp="1608302268685">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
     <state x="-1052" y="233" key="NewPhpClassDialog/0.0.1680.1020/-1680.0.1680.1020@-1680.0.1680.1020" timestamp="1606886243355" />
-    <state x="628" y="233" key="NewPhpClassDialog/0.0.1680.1020/-1680.0.1680.1020@0.0.1680.1020" timestamp="1607069648165" />
+    <state x="628" y="233" key="NewPhpClassDialog/0.0.1680.1020/-1680.0.1680.1020@0.0.1680.1020" timestamp="1608302268685" />
     <state x="-940" y="323" key="NewPhpFileDialog" timestamp="1606887713522">
       <screen x="-1680" y="0" width="1680" height="1020" />
     </state>
