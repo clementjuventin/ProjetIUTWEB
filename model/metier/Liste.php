@@ -19,7 +19,7 @@ class Liste
     public function __construct($label, $id, $user, $isPublic)
     {
         $this->label = $label;
-        $taskArray[];
+        $this->taskArray = array();
         $this->id = $id;
         $this->user = $user;
         $this->isPublic = $isPublic; //True pour public, False pour private

@@ -66,8 +66,6 @@ class FrontControler
     }
 
     function pushTask() {
-        var_dump($_POST);
-
         $task = new Task($_POST['title'],$_POST['comment'],$_POST['listLabel'],$_POST['color'],0);
         Validation::fil_Task($task,$this->dataVueErreur);
 
@@ -79,8 +77,14 @@ class FrontControler
     function displayInterface(){
         $user = $_SESSION['user'];
 
+
         $list = TaskModel::PullList($this->connexion,$user);
         foreach ($list as $l){
+            var_dump(TaskModel::Pulltask($this->connexion,$l->getId()));
+            var_dump(TaskModel::Pulltask($this->connexion,$l->getId()));
+            var_dump(TaskModel::Pulltask($this->connexion,$l->getId()));
+            var_dump($l->getId());
+            var_dump(TaskModel::Pulltask($this->connexion,$l->getId()));
             $l->addToList(TaskModel::Pulltask($this->connexion,$l->getId()));
         }
         require ($this->vues['head']['url']);
