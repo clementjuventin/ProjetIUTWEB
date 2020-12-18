@@ -7,6 +7,7 @@ class Task
     private $listId;
     private $color;
     private $id;
+    private $done;
 
     /**
      * Task constructor.
@@ -15,6 +16,7 @@ class Task
      * @param $listId
      * @param $color
      * @param $id
+     * @param $isChecked
      */
     public function __construct($titre, $description, $listId, $color, $id)
     {
@@ -23,6 +25,7 @@ class Task
         $this->listId = $listId;
         $this->color = $color;
         $this->id = $id;
+        $done = false;
     }
 
     /**
@@ -105,5 +108,14 @@ class Task
         $this->id = $id;
     }
 
+    public function isDone()
+    {
+        return $this->done;
+    }
+
+    public function setDone()
+    {
+        $this->done = true;
+    }
 
 }
