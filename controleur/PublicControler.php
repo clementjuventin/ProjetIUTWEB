@@ -23,11 +23,11 @@ class PublicControler
         if (isset($_REQUEST['action'])) {
             $action = $_REQUEST['action'];
         } else {
-            $action = 'null';
+            $action = 'public';
         }
         try {
             switch ($action) {
-                case "null":
+                case "public":
                     $this->displayInterface();
                     break;
                 case "addTask":
