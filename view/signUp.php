@@ -30,7 +30,7 @@
         </form>
         <form  method="post">
             <input type="submit" name="connexion" value="Retour" id="login" required>
-            <input type="hidden" name="action" value="NULL">
+            <input type="hidden" name="action" value="null">
         </form>
     </div>
 </body>

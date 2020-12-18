@@ -20,21 +20,41 @@ class FrontControler
         $this->connexion = new Connexion($base, $login, $mdp);              //Connexion
         $this->dataVueErreur = array();                                  //Tableau erreur
 
-
         if (isset($_REQUEST['action'])) {
             $action = $_REQUEST['action'];
         } else {
             $action = 'null';
         }
+
         try {
             switch ($action) {
-                case "null":
+                case "public":
+                    session_unset();
+                    //$this->SignIn($this->user->getLogin(), $this->user->getPassword());
                     if(!isset($_SESSION['user'])){
                         new PublicControler($vues,$base,$login,$mdp);
                     }
                     else{
                         new UserControler($vues,$base,$login,$mdp);
                     }
+                    break;
+                case "null":
+                    $this->Reinit();
+                case "signIn":
+                    $action = 'null';
+                    $this->SignIn($_POST['login'], $_POST['password']);
+                    if(!isset($_SESSION['user'])){
+                        new PublicControler($vues,$base,$login,$mdp);
+                    }
+                    else{
+                        new UserControler($vues,$base,$login,$mdp);
+                    }
+                    break;
+                case "signUpRedirect":
+                    $this->SignUpRedirect();
+                    break;
+                case "signUp":
+                    $this->SignUp($_POST['login'], $_POST['password'], $_POST['cpassword']);
                     break;
                 default:
                     $this->dataVueErreur['action'] = "Action non prise en compte par le controleur";
@@ -52,8 +72,42 @@ class FrontControler
         }
         exit(0);
     }
+    function SignIn($login,$password) {
+        Validation::val_SignIn($login,$password,$this->dataVueErreur);
 
+        $bool = UserModel::SignIn($this->connexion,$login,$password,$this->dataVueErreur);
+
+        if($bool){
+            $this->Session($login, $password);
+        }else{
+            $this->dataVueErreur['Login']="Probl&egrave;me lors de l'identification";
+            $this->Reinit();
+        }
+    }
+    function SignUp($login,$password,$cpassword) {
+
+        $bool=false;
+        if(Validation::val_SignUp($login,$password,$cpassword,$this->dataVueErreur)){
+            $bool = UserModel::SignUp($this->connexion,$login,$password,$this->dataVueErreur);
+        }
+        if($bool){
+            require($this->vues['head']['url']);
+            require($this->vues['login']['url']);
+        }else{
+            $this->SignUpRedirect();
+        }
+    }
+    function SignUpRedirect(){
+        require($this->vues['head']['url']);
+        require($this->vues['signUp']['url']);
+    }
+    function Reinit(){
+        require($this->vues['head']['url']);
+        require($this->vues['login']['url']);
+        require($this->vues['footer']['url']);
+    }
     function Session($login, $password){
+        session_unset();
         session_start();
         $this->user = new User($login, $password);
 
