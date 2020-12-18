@@ -36,9 +36,7 @@ class PublicControler
                 case "addTaskSubmit":
                     $this->pushTask();
                     break;
-                case "addPublicList":
-                    $this->initAddPublicList();
-                    break;
+            
                 default:
                     $this->dataVueErreur['action'] = "Action non prise en compte par le controleur";
                     require($this->vues['head']['url']);
@@ -76,12 +74,7 @@ class PublicControler
         header('Location: index.php');
     }
 
-    function initAddPublicList() {
-        require ($this->vues['head']['url']);
-        require ($this->vues['header']['url']);
-        require ($this->vues['addPublicList']['url']);
-        require ($this->vues['footer']['url']);
-    }   
+
 
     function displayInterface(){
         $list = TaskModel::PullList($this->connexion,new User("",""));

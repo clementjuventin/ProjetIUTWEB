@@ -39,9 +39,6 @@ class PanelControler
                 case "addTaskSubmit":
                     $this->pushTask();
                     break;
-                case "addPublicList"
-                    $this->initAddPublicList();
-                    break;
                 case "displayTask":
                     $this->displayInterface();
                     break;
@@ -82,12 +79,7 @@ class PanelControler
         header('Location: userInterface.php?action=displayTask');
     }
 
-    function initAddPublicList() {
-        require ($this->vues['head']['url']);
-        require ($this->vues['header']['url']);
-        require ($this->vues['addPublicList']['url']);
-        require ($this->vues['footer']['url']);
-    }
+
     function displayInterface(){
         $user = $_SESSION['user'];
 

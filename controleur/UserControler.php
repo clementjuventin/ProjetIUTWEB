@@ -115,4 +115,5 @@ class UserControler
 
         $_SESSION['user'] = $this->user;
     }
-}
+    
+
