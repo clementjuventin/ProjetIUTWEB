@@ -32,15 +32,12 @@ class GatewayTask
     }
 
     public function pushTask(Task $task){
-        $query="INSERT INTO task (user,title,description,date,color) VALUES(:usr,:title,:description,:dte,:color)";
-
-        $date = $task->getDate().' '.$task->getHour().':00';
+        $query="INSERT INTO task (title,description,listId,color) VALUES(:title,:description,:id,:color)";
 
         $this->connexion->executeQuery($query,array(
-            ':usr'=>array($task->getUser(),PDO::PARAM_STR),
             ':title'=>array($task->getTitre(),PDO::PARAM_STR),
             ':description'=>array($task->getDescription(),PDO::PARAM_STR),
-            ':dte'=>array($date,PDO::PARAM_STR),
+            ':id'=>array($task->getListId(),PDO::PARAM_STR),
             ':color'=>array($task->getColor(),PDO::PARAM_STR)
         ));
     }

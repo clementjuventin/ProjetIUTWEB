@@ -22,14 +22,10 @@
                 <textarea class="form-control" id="comment" rows="3" name="comment" placeholder="Commentaire"></textarea>
             </div>
             <div class="form-group" style="display: flex;">
-                <select name="day" class="custom-select my-1 mr-sm-2" id="jour" onchange="addTaskDayChange()">
+                <select name="listLabel" class="custom-select my-1 mr-sm-2" id="listLabel">
                     <?php
-                    for ($list as $li) {
-                        if($day==$i){
-                            echo '<option value="'.$i.'" selected="selected">'.$i.'</option>';
-                            continue;
-                        }
-                        echo '<option value="'.$i.'">'.$i.'</option>';
+                    foreach ($list as $li){
+                        echo '<option value="'.$li->getId().'">'.$li->getLabel().'</option>';
                     }
                     ?>
                 </select>

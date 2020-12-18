@@ -32,6 +32,12 @@ class FrontControler
                 case "null":
                     $this->displayInterface();
                     break;
+                case "addTask":
+                    $this->initAddTask();
+                    break;
+                case "addTaskSubmit":
+                    $this->pushTask();
+                    break;
                 default:
                     $this->dataVueErreur['action'] = "Action non prise en compte par le controleur";
                     require($this->vues['head']['url']);
@@ -49,6 +55,27 @@ class FrontControler
         exit(0);
     }
 
+    function initAddTask() {
+        $user = $_SESSION['user'];
+
+        $list = TaskModel::PullList($this->connexion,$user);
+        require ($this->vues['head']['url']);
+        require ($this->vues['header']['url']);
+        require ($this->vues['addTask']['url']);
+        require ($this->vues['footer']['url']);
+    }
+
+    function pushTask() {
+        var_dump($_POST);
+
+        $task = new Task($_POST['title'],$_POST['comment'],$_POST['listLabel'],$_POST['color'],0);
+        Validation::fil_Task($task,$this->dataVueErreur);
+
+        TaskModel::PushTask($this->connexion,$task);
+
+        header('Location: index.php');
+    }
+
     function displayInterface(){
         $user = $_SESSION['user'];
 
@@ -56,8 +83,6 @@ class FrontControler
         foreach ($list as $l){
             $l->addToList(TaskModel::Pulltask($this->connexion,$l->getId()));
         }
-
-
         require ($this->vues['head']['url']);
         require ($this->vues['header']['url']);
         require ($this->vues['toDoList']['url']);
