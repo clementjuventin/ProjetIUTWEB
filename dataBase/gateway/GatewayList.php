@@ -26,7 +26,7 @@ class GatewayList
 
         $final = array();
         foreach ($results as $res){
-            $final[] = new Liste($res['label'],[],$res['listId'],$res['user']);
+            $final[] = new Liste($res['label'],$res['listId'],$res['user'],$res['isPublic']);
         }
 
         return $final;

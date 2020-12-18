@@ -35,9 +35,7 @@
                                 </thead>
                                 <tbody>
                       ';
-                var_dump($lis);
                 foreach ($lis->getTaskArray() as $t){
-                    var_dump($t);
                     $settings = '
                         <button type="button" class="btn btn-danger" style="width: 2.5em"><i class="fas fa-times"></i></button>
                         <button type="button" class="btn btn-success" style="width: 2.5em"><i class="fas fa-check"></i></button>

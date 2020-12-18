@@ -7,6 +7,7 @@ class Liste
     private $taskArray;
     private $id;
     private $user;
+    private $isPublic;
 
     /**
      * Liste constructor.

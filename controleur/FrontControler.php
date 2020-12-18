@@ -80,11 +80,6 @@ class FrontControler
 
         $list = TaskModel::PullList($this->connexion,$user);
         foreach ($list as $l){
-            var_dump(TaskModel::Pulltask($this->connexion,$l->getId()));
-            var_dump(TaskModel::Pulltask($this->connexion,$l->getId()));
-            var_dump(TaskModel::Pulltask($this->connexion,$l->getId()));
-            var_dump($l->getId());
-            var_dump(TaskModel::Pulltask($this->connexion,$l->getId()));
             $l->addToList(TaskModel::Pulltask($this->connexion,$l->getId()));
         }
         require ($this->vues['head']['url']);
