@@ -1,21 +1,20 @@
 <?php
 
 
-class FrontControler
+class UserControler
 {
     private $connexion;
     private $vues;
     private $dataVueErreur;
+    private $user;
     /**
      * SessionControler constructor.
      */
-    public function __construct()
+    public function __construct($vues,$base,$login,$mdp)
     {
         include_once(__DIR__ . '/../config/config.php');              //Config
 
         $this->vues = $vues;                                        //Récupère les vues
-
-        session_start();                                    //Session
 
         $this->connexion = new Connexion($base, $login, $mdp);              //Connexion
         $this->dataVueErreur = array();                                  //Tableau erreur
@@ -29,12 +28,13 @@ class FrontControler
         try {
             switch ($action) {
                 case "null":
-                    if(!isset($_SESSION['user'])){
-                        new PublicControler($vues,$base,$login,$mdp);
-                    }
-                    else{
-                        new UserControler($vues,$base,$login,$mdp);
-                    }
+                    $this->displayInterface();
+                    break;
+                case "addTask":
+                    $this->initAddTask();
+                    break;
+                case "addTaskSubmit":
+                    $this->pushTask();
                     break;
                 default:
                     $this->dataVueErreur['action'] = "Action non prise en compte par le controleur";
@@ -53,6 +53,38 @@ class FrontControler
         exit(0);
     }
 
+    function initAddTask() {
+        $user = $_SESSION['user'];
+
+        $list = TaskModel::PullList($this->connexion,$user);
+        require ($this->vues['head']['url']);
+        require ($this->vues['header']['url']);
+        require ($this->vues['addTask']['url']);
+        require ($this->vues['footer']['url']);
+    }
+
+    function pushTask() {
+        $task = new Task($_POST['title'],$_POST['comment'],$_POST['listLabel'],$_POST['color'],0);
+        Validation::fil_Task($task,$this->dataVueErreur);
+
+        TaskModel::PushTask($this->connexion,$task);
+
+        header('Location: index.php');
+    }
+
+    function displayInterface(){
+        $user = $_SESSION['user'];
+
+
+        $list = TaskModel::PullList($this->connexion,$user);
+        foreach ($list as $l){
+            $l->addToList(TaskModel::Pulltask($this->connexion,$l->getId()));
+        }
+        require ($this->vues['head']['url']);
+        require ($this->vues['header']['url']);
+        require ($this->vues['toDoList']['url']);
+        require ($this->vues['footer']['url']);
+    }
     function Session($login, $password){
         session_start();
         $this->user = new User($login, $password);

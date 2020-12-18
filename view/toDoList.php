@@ -30,14 +30,13 @@
                                     <th scope="col"><i class="fas fa-key"></i></th>
                                     <th scope="col"><i class="fas fa-thumbtack"></i> T&acirc;che</th>
                                     <th scope="col"><i class="fas fa-comment-dots"></i> Commentaire</th>
-                                    <th scope="col"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
                       ';
                 foreach ($lis->getTaskArray() as $t){
                     $settings = '
-                        <button type="button" class="btn btn-danger" style="width: 2.5em"><i class="fas fa-times"></i></button>
+                        <button type="button" id="delButton" class="btn btn-danger" style="width: 2.5em"><i class="fas fa-times"></i></button>
                         <button type="button" class="btn btn-success" style="width: 2.5em"><i class="fas fa-check"></i></button>
                         ';
                     echo '<tr style="background-color: '.$t->getColor().';">
@@ -52,3 +51,14 @@
             ?>
     </div>
 </body>
+
+<script type="javascript">
+    $(document).ready(function(){
+        $("#delButton").click(function(){
+            $.ajax({url:"../requestHandler/ajaxHandler.php",
+                success:function(ajaxresult){
+                    $("#ajaxrequest").html(ajaxresult);
+                }});
+        });
+    });
+</script>

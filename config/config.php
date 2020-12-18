@@ -20,12 +20,15 @@ $vues['toDoList']=array('url'=>__DIR__.'\..\view/toDoList.php');
 $vues['addTask']=array('url'=>__DIR__.'\..\view/addTask.php');
 
 //Controllers
-$cont['contPanel']=array('url'=> __DIR__ . '\..\controleur\PanelControler.php');
-$cont['contUser']=array('url'=>__DIR__.'\..\controleur\SessionControler.php');
+$cont['UserCont']=array('url'=> __DIR__ . '\..\controleur\UserControler.php');
 $cont['frontCont']=array('url'=>__DIR__.'\..\controleur\FrontControler.php');
+$cont['PublicCont']=array('url'=>__DIR__.'\..\controleur\PublicControler.php');
 
 //Classes
 require_once(__DIR__ . '\Validation.php');
+
+require_once(__DIR__ . '\..\controleur\PublicControler.php');
+require_once(__DIR__ . '\..\controleur\UserControler.php');
 
 require_once(__DIR__ . '\..\dataBase\Connexion.php');
 require_once(__DIR__ . '\..\dataBase\gateway\GatewayTask.php');

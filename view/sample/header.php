@@ -32,14 +32,4 @@
         </ul>
     </div>
 </nav>
-<script>
-    function dayChange(){
-        console.log(document.getElementById('day').value)
-    }
-    function monthChange(){
-        console.log(document.getElementById('month').value)
-    }
-    function yearChange(){
-        console.log(document.getElementById('year').value)
-    }
-</script>
+

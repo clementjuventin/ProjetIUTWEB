@@ -23,7 +23,7 @@ class SessionControler
         if (isset($_SESSION['user'])) {
             $this->user = $_SESSION['user'];
         } else {
-            $this->Session("public", "public");
+            $this->Session("", "");
         }
         if (isset($_REQUEST['action'])) {
             $action = $_REQUEST['action'];
