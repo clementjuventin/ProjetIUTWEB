@@ -24,60 +24,12 @@
             <div class="form-group" style="display: flex;">
                 <select name="day" class="custom-select my-1 mr-sm-2" id="jour" onchange="addTaskDayChange()">
                     <?php
-                    $day = (int)date("d");
-                    var_dump($day);
-                    for ($i = 1; $i <= 31; $i++) {
+                    for ($list as $li) {
                         if($day==$i){
                             echo '<option value="'.$i.'" selected="selected">'.$i.'</option>';
                             continue;
                         }
                         echo '<option value="'.$i.'">'.$i.'</option>';
-                    }
-                    ?>
-                </select>
-                <select name="month" id="month" class="custom-select my-1 mr-sm-2" id="mois" onchange="addTaskMonthChange()">
-                    <?php
-                    $m = (int)date("m")-1;
-                    $month = array("Janvier","F&eacute;vrier","Mars","Avril","Mai","Juin","Juillet","Ao&ucirc;t","Septembre","Octobre","Novembre","D&eacute;cembre");
-                    for ($i = 0; $i < 12; $i++) {
-                        if($i==$m){
-                            echo '<option value="'.($i+1).'" selected="selected">'.$month[$i].'</option>';
-                            continue;
-                        }
-                        echo '<option value="'.($i+1).'">'.$month[$i].'</option>';
-                    }
-                    ?>
-                </select>
-                <select name="year" class="custom-select my-1 mr-sm-2" id="annee">
-                    <?php
-                    $year = (int)date("Y");
-                    for ($i = $year; $i <= $year+10; $i++) {
-                        echo '<option value="'.$i.'">'.$i.'</option>';
-                    }
-                    ?>
-                </select>
-                <select name="hour" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                    <?php
-                    $heure = (int)date("h")+8;
-                    for ($i = 0; $i < 24; $i++) {
-                        if($i==$heure){
-                            echo '<option value="'.$i.'" selected="selected">'.$i.'h</option>';
-                            continue;
-                        }
-                        echo '<option value="'.$i.'">'.$i.'h</option>';
-                    }
-                    ?>
-                </select>
-                <select name="min" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                    <?php
-                    $min = (int)date("i");
-                    for ($i = 0; $i < 6; $i++) {
-                        if(($i*10)>$min){
-                            $min = 61;
-                            echo '<option value="'.($i*10).'" selected="selected">'.($i*10).'</option>';
-                            continue;
-                        }
-                        echo '<option value="'.($i*10).'">'.($i*10).'</option>';
                     }
                     ?>
                 </select>
