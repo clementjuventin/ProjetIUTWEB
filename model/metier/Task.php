@@ -16,7 +16,7 @@ class Task
      * @param $listId
      * @param $color
      * @param $id
-     * @param $isChecked
+     * @param $done
      */
     public function __construct($titre, $description, $listId, $color, $id)
     {
