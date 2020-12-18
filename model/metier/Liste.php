@@ -60,7 +60,7 @@ class Liste
      */
     public function getId()
     {
-        return $this->id;
+        return intval($this->id);
     }
 
     /**
@@ -91,4 +91,9 @@ class Liste
         return true;//A changer
     }
 
+    public function addToList($task){
+        foreach ($task as $t){
+            $this->taskArray[]=$t;
+        }
+    }
 }

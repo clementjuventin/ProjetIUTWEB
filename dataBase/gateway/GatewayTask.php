@@ -17,16 +17,16 @@ class GatewayTask
         $this->connexion = $connexion;
     }
 
-    public function buildDailyTaskForUser($id):array{
+    public function buildTask($id):array{
         $query="SELECT * FROM task WHERE id=:id;";
 
-        $this->connexion->executeQuery($query,array(':id'=>array($id->getLogin(),PDO::PARAM_STR)));
+        $this->connexion->executeQuery($query,array(':id'=>array($id,PDO::PARAM_STR)));
 
         $results = $this->connexion->getResults();
 
         $final = array();
         foreach ($results as $res){
-            $final[] = new Task($res['title'],$res['description'],$res['user'],$date,$res['color'],$res['id']);
+            $final[] = new Task($res['title'],$res['description'],$id,$res['color'],$res['id']);
         }
         return $final;
     }

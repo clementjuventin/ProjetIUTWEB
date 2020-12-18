@@ -7,9 +7,9 @@ class TaskModel
         $gtw = new GatewayTask($con);
         $gtw->pushTask($task);
     }
-    static function Pulltask($con, $user){
+    static function Pulltask($con, $id){
         $gtw = new GatewayTask($con);
-        $task = $gtw->buildDailyTaskForUser($user);
+        $task = $gtw->buildTask($id);
         /*
         if($user->getLogin()!="public"){
             $task = array_merge($gtw->buildDailyTaskForUser(new User("public","public"), $date),$task);

@@ -25,12 +25,11 @@ class FrontControler
         if (isset($_REQUEST['action'])) {
             $action = $_REQUEST['action'];
         } else {
-            $action = NULL;
+            $action = 'null';
         }
-
         try {
             switch ($action) {
-                case "NULL":
+                case "null":
                     $this->displayInterface();
                     break;
                 default:
@@ -54,6 +53,11 @@ class FrontControler
         $user = $_SESSION['user'];
 
         $list = TaskModel::PullList($this->connexion,$user);
+        foreach ($list as $l){
+            var_dump($l);
+            $l->addToList(TaskModel::Pulltask($this->connexion,$l->getId()));
+        }
+
 
         require ($this->vues['head']['url']);
         require ($this->vues['header']['url']);
