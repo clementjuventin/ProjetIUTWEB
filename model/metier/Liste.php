@@ -14,13 +14,15 @@ class Liste
      * @param $taskArray
      * @param $id
      * @param $user
+     * @param $isPublic
      */
-    public function __construct($label, $taskArray, $id, $user)
+    public function __construct($label, $id, $user, $isPublic)
     {
         $this->label = $label;
-        $this->taskArray = $taskArray;
+        $taskArray[];
         $this->id = $id;
         $this->user = $user;
+        $this->isPublic = $isPublic; //True pour public, False pour private
     }
 
     /**
@@ -88,8 +90,13 @@ class Liste
     }
 
     public function isPublic(){
-        return true;//A changer
+        return $this->isPublic;
     }
+
+    public function setIsPublic($bool){
+        $this->isPublic = $bool;
+    }
+
 
     public function addToList($task){
         foreach ($task as $t){
