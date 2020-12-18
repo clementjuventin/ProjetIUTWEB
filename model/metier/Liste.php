@@ -87,5 +87,8 @@ class Liste
         $this->user = $user;
     }
 
+    public function isPublic(){
+        return true;//A changer
+    }
 
 }
