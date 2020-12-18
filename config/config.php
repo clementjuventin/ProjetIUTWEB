@@ -18,6 +18,7 @@ $vues['login']=array('url'=>__DIR__.'\..\view/login.php');
 $vues['signUp']=array('url'=>__DIR__.'\..\view/signUp.php');
 $vues['toDoList']=array('url'=>__DIR__.'\..\view/toDoList.php');
 $vues['addTask']=array('url'=>__DIR__.'\..\view/addTask.php');
+$vues['addPublicList']=array('url'=>__DIR__.'\..\view/addPublicList.php');
 
 //Controllers
 $cont['UserCont']=array('url'=> __DIR__ . '\..\controleur\UserControler.php');

@@ -14,7 +14,7 @@ class UserControler
     {
         include_once(__DIR__ . '/../config/config.php');              //Config
 
-        $this->vues = $vues;                                        //Récupère les vues
+        $this->vues = $vues;                                        //Rï¿½cupï¿½re les vues
 
         $this->connexion = new Connexion($base, $login, $mdp);              //Connexion
         $this->dataVueErreur = array();                                  //Tableau erreur
@@ -35,6 +35,12 @@ class UserControler
                     break;
                 case "addTaskSubmit":
                     $this->pushTask();
+                    break;
+                case "addPublicList":
+                    $this->initAddPublicList();
+                    break;
+                case "addPublicListSubmit":
+                    $this->pushPublicList();
                     break;
                 default:
                     $this->dataVueErreur['action'] = "Action non prise en compte par le controleur";
@@ -71,7 +77,24 @@ class UserControler
 
         header('Location: index.php');
     }
+    function initAddPublicList() {
+        require ($this->vues['head']['url']);
+        require ($this->vues['header']['url']);
+        require ($this->vues['addPublicList']['url']);
+        require ($this->vues['footer']['url']);
+    }
 
+    function pushPublicList() {
+        $user = $_SESSION['user'];
+
+        $list = new Liste($_POST['label'],0,$user,1);
+        //Validation::fil_Task($task,$this->dataVueErreur);
+
+        TaskModel::PushList($this->connexion,$list);
+
+        header('Location: index.php');
+        }
+    }
     function displayInterface(){
         $user = $_SESSION['user'];
 
@@ -85,6 +108,7 @@ class UserControler
         require ($this->vues['toDoList']['url']);
         require ($this->vues['footer']['url']);
     }
+
     function Session($login, $password){
         session_start();
         $this->user = new User($login, $password);

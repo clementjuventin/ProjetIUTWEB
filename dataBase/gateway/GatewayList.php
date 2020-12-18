@@ -1,6 +1,6 @@
 <?php
 /*
- * A ajouter: Authentification lors de chaque opération avec la base de donnée
+ * A ajouter: Authentification lors de chaque opï¿½ration avec la base de donnï¿½e
  *
  */
 
@@ -26,19 +26,20 @@ class GatewayList
 
         $final = array();
         foreach ($results as $res){
-            $final[] = new Liste($res['label'],$res['listId'],$res['user'],$res['isPublic']);
+            $final[] = new Liste($res['label'],[],$res['listId'],$res['user']);
         }
 
         return $final;
     }
 
     public function pushList(Liste $list){
-        $query="INSERT INTO list (label,user) VALUES(:label,:user)";
-
+        $query="INSERT INTO list (label,user,isPublic) VALUES(:label,:user,:isPublic)";
 
         $this->connexion->executeQuery($query,array(
             ':label'=>array($list->getLabel(),PDO::PARAM_STR),
             ':user'=>array($list->getUser(),PDO::PARAM_STR),
+            ':isPublic'=>array($list->isPublic(),PDO::PARAM_INT),
+            
         ));
     }
 }

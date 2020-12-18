@@ -14,7 +14,7 @@ class PanelControler
     {
         include_once(__DIR__ . '/../config/config.php');              //Config
 
-        $this->vues = $vues;                                        //Récupère les vues
+        $this->vues = $vues;                                        //Rï¿½cupï¿½re les vues
 
         session_start();                                    //Session
 
@@ -38,6 +38,9 @@ class PanelControler
                     break;
                 case "addTaskSubmit":
                     $this->pushTask();
+                    break;
+                case "addPublicList"
+                    $this->initAddPublicList();
                     break;
                 case "displayTask":
                     $this->displayInterface();
@@ -66,7 +69,7 @@ class PanelControler
         require ($this->vues['footer']['url']);
     }
     function pushTask() {
-        //Sous case cochée
+        //Sous case cochï¿½e
         //mail(<adresse du destinataire>,<titre du mail>,<corps du message>);
 
         $user = $_SESSION['user'];
@@ -77,6 +80,13 @@ class PanelControler
         TaskModel::PushTask($this->connexion,$task);
 
         header('Location: userInterface.php?action=displayTask');
+    }
+
+    function initAddPublicList() {
+        require ($this->vues['head']['url']);
+        require ($this->vues['header']['url']);
+        require ($this->vues['addPublicList']['url']);
+        require ($this->vues['footer']['url']);
     }
     function displayInterface(){
         $user = $_SESSION['user'];

@@ -14,7 +14,7 @@ class PublicControler
     {
         include_once(__DIR__ . '/../config/config.php');              //Config
 
-        $this->vues = $vues;                                        //Récupère les vues
+        $this->vues = $vues;                                        //Rï¿½cupï¿½re les vues
 
         $this->connexion = new Connexion($base, $login, $mdp);              //Connexion
         $this->dataVueErreur = array();                                  //Tableau erreur
@@ -36,10 +36,14 @@ class PublicControler
                 case "addTaskSubmit":
                     $this->pushTask();
                     break;
+                case "addPublicList":
+                    $this->initAddPublicList();
+                    break;
                 default:
                     $this->dataVueErreur['action'] = "Action non prise en compte par le controleur";
                     require($this->vues['head']['url']);
                     require($this->vues['erreur']['url']);
+
             }
         } catch (PDOException $e) {
             $this->dataVueErreur["PDOException"] = $e->getMessage();
@@ -71,6 +75,13 @@ class PublicControler
 
         header('Location: index.php');
     }
+
+    function initAddPublicList() {
+        require ($this->vues['head']['url']);
+        require ($this->vues['header']['url']);
+        require ($this->vues['addPublicList']['url']);
+        require ($this->vues['footer']['url']);
+    }   
 
     function displayInterface(){
         $list = TaskModel::PullList($this->connexion,new User("",""));

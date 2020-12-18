@@ -28,3 +28,14 @@ class TaskModel
         return $list;
     }
 }
+    static function PushList($con, $list){
+        $gtw = new GatewayList($con);
+        $list = $gtw->pushList($list);
+        /*
+        if($user->getLogin()!="public"){
+            $task = array_merge($gtw->buildDailyTaskForUser(new User("public","public"), $date),$task);
+        }
+        */
+    
+    }
+}
