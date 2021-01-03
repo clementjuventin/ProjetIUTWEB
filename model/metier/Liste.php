@@ -94,9 +94,6 @@ class Liste
         return $this->isPublic;
     }
 
-    public function setIsPublic($bool){
-        $this->isPublic = $bool;
-    }
 
 
     public function addToList($task){
