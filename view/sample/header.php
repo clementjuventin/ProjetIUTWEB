@@ -26,7 +26,7 @@
                 </form>
                 <form style="display: inline-block;">
                     <button type="submit" class="btn btn-success"><i class="fas fa-plus"></i> Ajouter une liste</button>
-                    <input type="hidden" name="action" value="addPublicList">
+                    <input type="hidden" name="action" value="addList">
                 </form>
             </li>
         </ul>
