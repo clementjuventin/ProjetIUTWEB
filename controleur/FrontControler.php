@@ -26,27 +26,30 @@ class FrontControler
             $action = 'null';
         }
 
+        if(isset($_SESSION['role'])){
+            if($_SESSION['role'] == 'public'){
+                return new PublicControler($vues,$base,$login,$mdp);
+            }
+            if($_SESSION['role'] == 'user'){
+                return new UserControler($vues,$base,$login,$mdp);
+            }
+            $this->dataVueErreur['Role'] = 'Role non definit';
+        }
+
         try {
             switch ($action) {
                 case "public":
-                    session_unset();
-                    //$this->SignIn($this->user->getLogin(), $this->user->getPassword());
-                    if(!isset($_SESSION['user'])){
-                        new PublicControler($vues,$base,$login,$mdp);
-                    }
-                    else{
-                        new UserControler($vues,$base,$login,$mdp);
-                    }
+                    $_SESSION['role'] = 'public';
+                    new PublicControler($vues,$base,$login,$mdp);
                     break;
                 case "null":
+                    $action = NULL;
                     $this->Reinit();
+                    break;
                 case "signIn":
-                    $action = 'null';
                     $this->SignIn($_POST['login'], $_POST['password']);
-                    if(!isset($_SESSION['user'])){
-                        new PublicControler($vues,$base,$login,$mdp);
-                    }
-                    else{
+                    if(isset($_SESSION['user'])){
+                        $_SESSION['role'] = 'user';
                         new UserControler($vues,$base,$login,$mdp);
                     }
                     break;
@@ -107,8 +110,6 @@ class FrontControler
         require($this->vues['footer']['url']);
     }
     function Session($login, $password){
-        session_unset();
-        session_start();
         $this->user = new User($login, $password);
 
         $_SESSION['user'] = $this->user;

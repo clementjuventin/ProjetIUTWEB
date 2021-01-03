@@ -19,22 +19,35 @@ class UserControler
         $this->connexion = new Connexion($base, $login, $mdp);              //Connexion
         $this->dataVueErreur = array();                                  //Tableau erreur
 
-
         if (isset($_REQUEST['action'])) {
             $action = $_REQUEST['action'];
         } else {
-            $action = 'null';
+            $action = 'signIn';
         }
         try {
             switch ($action) {
-                case "null":
+                case "signIn":
+                    $this->displayInterface();
+                    break;
+                case "displayTask":
                     $this->displayInterface();
                     break;
                 case "addTask":
                     $this->initAddTask();
                     break;
+                case "addList":
+                    $this->initAddList();
+                    break;
                 case "addTaskSubmit":
                     $this->pushTask();
+                    break;
+                case "addListSubmit":
+                    $this->pushList();
+                    break;
+                case "logOut":
+                    session_unset();
+                    session_destroy();
+                    header('Location: index.php');
                     break;
                 default:
                     $this->dataVueErreur['action'] = "Action non prise en compte par le controleur";
@@ -54,12 +67,18 @@ class UserControler
     }
 
     function initAddTask() {
-        $user = $_SESSION['user'];
-
-        $list = TaskModel::PullList($this->connexion,$user);
+        $list = TaskModel::PullList($this->connexion,false,$_SESSION['user']);
         require ($this->vues['head']['url']);
         require ($this->vues['header']['url']);
         require ($this->vues['addTask']['url']);
+        require ($this->vues['footer']['url']);
+    }
+
+    function initAddList() {
+
+        require ($this->vues['head']['url']);
+        require ($this->vues['header']['url']);
+        require ($this->vues['addList']['url']);
         require ($this->vues['footer']['url']);
     }
 
@@ -72,11 +91,19 @@ class UserControler
         header('Location: index.php');
     }
 
+    function pushList() {
+        $list = new Liste($_POST['title'],0,$_SESSION['user'],0);
+        Validation::fil_Liste($list,$this->dataVueErreur);
+
+        TaskModel::PushListe($this->connexion,$list);
+
+        header('Location: index.php');
+    }
+
     function displayInterface(){
         $user = $_SESSION['user'];
 
-
-        $list = TaskModel::PullList($this->connexion,$user);
+        $list = TaskModel::PullList($this->connexion,false,$user);
         foreach ($list as $l){
             $l->addToList(TaskModel::Pulltask($this->connexion,$l->getId()));
         }

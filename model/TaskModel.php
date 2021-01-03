@@ -7,6 +7,12 @@ class TaskModel
         $gtw = new GatewayTask($con);
         $gtw->pushTask($task);
     }
+
+    static function PushListe($con, $liste){
+        $gtw = new GatewayList($con);
+        $gtw->pushList($liste);
+    }
+
     static function Pulltask($con, $id){
         $gtw = new GatewayTask($con);
         $task = $gtw->buildTask($id);
@@ -17,14 +23,15 @@ class TaskModel
         */
         return $task;
     }
-    static function PullList($con, $user){
+    static function PullList($con,$isPublic,$user){
         $gtw = new GatewayList($con);
-        $list = $gtw->buildList($user);
-        /*
-        if($user->getLogin()!="public"){
-            $task = array_merge($gtw->buildDailyTaskForUser(new User("public","public"), $date),$task);
+        if($isPublic){
+            $list = $gtw->buildPublicList();
+
         }
-        */
+        else{
+            $list = $gtw->buildList($user);
+        }
         return $list;
     }
 }

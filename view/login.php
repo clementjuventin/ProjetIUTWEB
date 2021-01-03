@@ -14,15 +14,15 @@
             }
             ?>
             </span>
-            <input type="submit" name="connexion" value="Connexion" required>
+            <input type="submit" value="Connexion" required>
             <input type="hidden" name="action" value="signIn">
         </form>
         <form>
-            <input type="submit" name="inscription" value="Profil publique">
+            <input type="submit" value="Profil publique">
             <input type="hidden" name="action" value="public">
         </form>
-        <form>
-            <input type="submit" name="inscription" value="Inscription">
+        <form method="post">
+            <input type="submit" value="Inscription">
             <input type="hidden" name="action" value="signUpRedirect">
         </form>
     </div>

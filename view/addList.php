@@ -19,7 +19,7 @@
                 <input type="text" class="form-control" id="title" name="title" placeholder="Titre" required>
             </div>
             <div style="margin-top: 1em">
-                <button type="submit" class="btn btn-success btn-lg btn-block"><i class="fas fa-check"></i> Ajouter la t&acirc;che</button>
+                <button type="submit" class="btn btn-success btn-lg btn-block"><i class="fas fa-check"></i> Ajouter la liste</button>
                 <input type="hidden" name="action" value="addListSubmit">
             </div>
         </form>

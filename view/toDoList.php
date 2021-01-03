@@ -13,6 +13,7 @@
     <div class="container" style="text-align: center;line-height: 3;">
         <div id="accordion">
             <?php
+            $num = 0;
             foreach ($list as $lis){
                 echo '<div class="card">
                             <div class="card-header" id="headingOne">
@@ -22,7 +23,7 @@
                                     </button>
                                 </h5>
                             </div>
-                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div id="'.$num.'" class="collapse show" aria-labelledby="'.$num.'" data-parent="#accordion">
                                 <div class="card-body">
                                 <table class="table table-hover">
                                 <thead>
@@ -34,6 +35,7 @@
                                 </thead>
                                 <tbody>
                       ';
+                $num = $num+1;
                 foreach ($lis->getTaskArray() as $t){
                     $settings = '
                         <button type="button" id="delButton" class="btn btn-danger" style="width: 2.5em"><i class="fas fa-times"></i></button>

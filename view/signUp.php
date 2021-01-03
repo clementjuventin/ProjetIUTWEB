@@ -29,7 +29,7 @@
             <input type="hidden" name="action" value="signUp">
         </form>
         <form  method="post">
-            <input type="submit" name="connexion" value="Retour" id="login" required>
+            <input type="submit" value="Retour" id="login" required>
             <input type="hidden" name="action" value="null">
         </form>
     </div>

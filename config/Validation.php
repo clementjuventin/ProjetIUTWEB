@@ -49,5 +49,13 @@ class Validation {
         }
         $task->setColor(filter_var($tmp, FILTER_SANITIZE_STRING));
     }
+
+     static function fil_Liste(Liste &$list,&$dataVueErreur){
+         $tmp = $list->getLabel();
+         if(!isset($tmp)||$tmp==""){
+             $dataVueErreur['Titre'] = "Aucun titre renseign&eacute;";
+         }
+         $list->setLabel(filter_var($tmp, FILTER_SANITIZE_STRING));
+     }
 }
 ?>
