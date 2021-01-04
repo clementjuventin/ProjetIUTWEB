@@ -14,7 +14,7 @@ class PublicControler
     {
         include_once(__DIR__ . '/../config/config.php');              //Config
 
-        $this->vues = $vues;                                        //Récupère les vues
+        $this->vues = $vues;                                        //Rï¿½cupï¿½re les vues
 
         $this->connexion = new Connexion($base, $login, $mdp);              //Connexion
         $this->dataVueErreur = array();                                  //Tableau erreur
@@ -44,6 +44,13 @@ class PublicControler
                 case "addListSubmit":
                     $this->pushList();
                     break;
+                case "delButton":
+                    $this->deleteTask();
+                    break; 
+                case "doneTask":
+                    $this->doneTask();
+                    break; 
+                       
                 case "logOut":
                     session_unset();
                     session_destroy();
@@ -100,6 +107,23 @@ class PublicControler
 
         header('Location: index.php');
     }
+
+    function deleteTask() {
+    
+        if(Validation::valId($_POST['id'],$this->dataVueErreur))
+        TaskModel::DeleteTask($this->connexion,$_POST['id']);
+
+        header('Location: index.php');
+    }
+
+    function doneTask() {
+    
+        if(Validation::valId($_POST['id'],$this->dataVueErreur))
+        TaskModel::DoneTask($this->connexion,$_POST['id']);
+
+        header('Location: index.php');
+    }
+
 
     function displayInterface(){
         $list = TaskModel::PullList($this->connexion,true, '');

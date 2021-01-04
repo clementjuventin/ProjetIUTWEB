@@ -29,8 +29,18 @@ class Validation {
             $login="";
             return false;
         }
+        
         return true;
     }
+    static function valId($id, array &$dataVueErreur):bool {
+        
+         if (filter_var($id, FILTER_SANITIZE_NUMBER_INT)!=$id) {
+            $dataVueErreur['ID'] = "Erreur suppression Id;"; 
+            return false;
+         }
+         return true;
+    }
+
 
     static function fil_Task(Task &$task,&$dataVueErreur){
         $tmp = $task->getTitre();

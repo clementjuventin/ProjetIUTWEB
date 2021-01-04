@@ -19,6 +19,16 @@ class TaskModel
 
         return $task;
     }
+
+    static function DeleteTask($con, $id){
+        $gtw = new GatewayTask($con);
+        $gtw->deleteTask($id);
+    }
+
+    static function DoneTask($con, $id){
+        $gtw = new GatewayTask($con);
+        $gtw->doneTask($id);
+    }
     static function PullList($con,$isPublic,$user){
         $gtw = new GatewayList($con);
         if($isPublic){

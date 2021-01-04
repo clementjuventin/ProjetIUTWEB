@@ -25,7 +25,7 @@ class Task
         $this->listId = $listId;
         $this->color = $color;
         $this->id = $id;
-        $done = false;
+        $done = 0;
     }
 
     /**
@@ -113,9 +113,5 @@ class Task
         return $this->done;
     }
 
-    public function setDone()
-    {
-        $this->done = true;
-    }
-
+  
 }

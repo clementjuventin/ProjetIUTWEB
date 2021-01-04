@@ -38,9 +38,18 @@
                 $num = $num+1;
                 foreach ($lis->getTaskArray() as $t){
                     $settings = '
-                        <button type="button" id="delButton" class="btn btn-danger" style="width: 2.5em"><i class="fas fa-times"></i></button>
-                        <button type="button" class="btn btn-success" style="width: 2.5em"><i class="fas fa-check"></i></button>
-                        ';
+                       
+                        <form method="POST" style="display: inline-block;">
+                        <button type="submit"  name="action" value="delButton" class="btn btn-danger" style="width: 2.5em"><i class="fas fa-times"></i></button>
+                        <input type="hidden" name="id" value="'.$t->getId().'">
+                        </form>
+                    
+                        <form method="POST" style="display: inline-block;">
+                        <button type="submit"  name="action" value="doneTask" class="btn btn-success" style="width: 2.5em"><i class="fas fa-check"></i></button>
+                        <input type="hidden" name="id" value="'.$t->getId().'">
+                        </form>
+                    ';
+                    
                     echo '<tr style="background-color: '.$t->getColor().';">
                                 <td>'.$t->getTitre().'</td>
                                 <td>'.$t->getDescription().'</td>
@@ -55,12 +64,5 @@
 </body>
 
 <script type="javascript">
-    $(document).ready(function(){
-        $("#delButton").click(function(){
-            $.ajax({url:"../requestHandler/ajaxHandler.php",
-                success:function(ajaxresult){
-                    $("#ajaxrequest").html(ajaxresult);
-                }});
-        });
-    });
+ 
 </script>

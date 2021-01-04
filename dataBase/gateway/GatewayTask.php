@@ -1,6 +1,6 @@
 <?php
 /*
- * A ajouter: Authentification lors de chaque opération avec la base de donnée
+ * A ajouter: Authentification lors de chaque opï¿½ration avec la base de donnï¿½e
  *
  */
 
@@ -41,4 +41,16 @@ class GatewayTask
             ':color'=>array($task->getColor(),PDO::PARAM_STR)
         ));
     }
+
+    public function deleteTask($id){
+        $query="DELETE FROM task WHERE id=:id;";
+
+        $this->connexion->executeQuery($query,array(':id'=>array($id,PDO::PARAM_STR)));
+    }
+
+    public function doneTask($id){
+    $query="UPDATE task SET isDone = 1 WHERE id=:id;";
+    $this->connexion->executeQuery($query,array(':id'=>array($id,PDO::PARAM_STR)));
+}
+
 }
