@@ -18,14 +18,14 @@ class Task
      * @param $id
      * @param $done
      */
-    public function __construct($titre, $description, $listId, $color, $id)
+    public function __construct($titre, $description, $listId, $color, $id, $done)
     {
         $this->titre = $titre;
         $this->description = $description;
         $this->listId = $listId;
         $this->color = $color;
         $this->id = $id;
-        $done = 0;
+        $this->done = $done;
     }
 
     /**
