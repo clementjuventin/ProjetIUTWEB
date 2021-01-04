@@ -86,7 +86,7 @@ class UserControler
     }
 
     function pushTask() {
-        $task = new Task($_POST['title'],$_POST['comment'],$_POST['listLabel'],$_POST['color'],0);
+        $task = new Task($_POST['title'],$_POST['comment'],$_POST['listLabel'],$_POST['color'],0,0);
         Validation::fil_Task($task,$this->dataVueErreur);
 
         TaskModel::PushTask($this->connexion,$task);
