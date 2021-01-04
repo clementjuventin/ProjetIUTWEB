@@ -47,6 +47,9 @@ class UserControler
                 case "delButton":
                     $this->deleteTask();
                     break;    
+                case "doneTask":
+                    $this->doneTask();
+                    break;     
                 case "logOut":
                     session_unset();
                     session_destroy();
@@ -110,7 +113,15 @@ class UserControler
 
         header('Location: index.php');
     }
+
+    function doneTask() {
     
+        if(Validation::valId($_POST['id'],$this->dataVueErreur))
+        TaskModel::DoneTask($this->connexion,$_POST['id']);
+
+        header('Location: index.php');
+    }
+
     function displayInterface(){
         $user = $_SESSION['user'];
 
