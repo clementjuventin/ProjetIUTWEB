@@ -42,10 +42,19 @@ class GatewayTask
         ));
     }
 
-    public function deleteTask($id){
+    public function deleteTaskperListId($listId){
+
+        $query="DELETE FROM task WHERE listId=:listId;";
+
+        $this->connexion->executeQuery($query,array(':listId'=>array($listId,PDO::PARAM_STR)));
+
+    }
+    public function deleteTaskPerId($id){
+     
         $query="DELETE FROM task WHERE id=:id;";
 
         $this->connexion->executeQuery($query,array(':id'=>array($id,PDO::PARAM_STR)));
+
     }
 
     public function doneTask($id){

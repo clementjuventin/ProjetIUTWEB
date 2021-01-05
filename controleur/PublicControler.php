@@ -44,9 +44,12 @@ class PublicControler
                 case "addListSubmit":
                     $this->pushList();
                     break;
-                case "delButton":
+                case "delTask":
                     $this->deleteTask();
                     break; 
+                case "delList":
+                    $this->deleteList();
+                        break;     
                 case "doneTask":
                     $this->doneTask();
                     break; 
@@ -112,6 +115,14 @@ class PublicControler
     
         if(Validation::valId($_POST['id'],$this->dataVueErreur))
         TaskModel::DeleteTask($this->connexion,$_POST['id']);
+
+        header('Location: index.php');
+    }
+
+    function deleteList() {
+    
+        if(Validation::valId($_POST['id'],$this->dataVueErreur))
+        TaskModel::DeleteList($this->connexion,$_POST['id']);
 
         header('Location: index.php');
     }

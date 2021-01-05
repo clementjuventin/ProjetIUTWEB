@@ -42,16 +42,27 @@ class Validation {
     }
 
 
+
     static function fil_Task(Task &$task,&$dataVueErreur){
         $tmp = $task->getTitre();
         if(!isset($tmp)||$tmp==""){
             $dataVueErreur['Titre'] = "Aucun titre renseign&eacute;";
         }
         $task->setTitre(filter_var($tmp, FILTER_SANITIZE_STRING));
+
+
+        $tmp = $task->getId();
+        if(!isset($tmp)){
+            $dataVueErreur['ListId'] = "[ERR] ListeId";
+            
+        }
+        $task->setId(filter_var($tmp, FILTER_SANITIZE_NUMBER_INT));
+
         $tmp = $task->getDescription();
         if(!isset($tmp)){
             $dataVueErreur['Description'] = "[ERR] Description";
         }
+
         $task->setDescription(filter_var($tmp, FILTER_SANITIZE_STRING));
         $tmp = $task->getColor();
         if(!isset($tmp)||$tmp==""){

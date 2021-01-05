@@ -1,6 +1,6 @@
 <?php
 /*
- * A ajouter: Authentification lors de chaque opération avec la base de donnée
+ * A ajouter: Authentification lors de chaque opï¿½ration avec la base de donnï¿½e
  *
  */
 
@@ -30,6 +30,11 @@ class GatewayList
         }
 
         return $final;
+    }
+    public function deleteList($listId){
+        $query="DELETE FROM list WHERE listId=:listId;";
+
+        $this->connexion->executeQuery($query,array(':listId'=>array($listId,PDO::PARAM_STR)));
     }
 
     public function buildPublicList():array{

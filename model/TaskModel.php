@@ -22,7 +22,14 @@ class TaskModel
 
     static function DeleteTask($con, $id){
         $gtw = new GatewayTask($con);
-        $gtw->deleteTask($id);
+        $gtw->deleteTaskPerId($id);
+    }
+
+    static function DeleteList($con, $id){
+        $gtwtask = new GatewayTask($con);
+        $gtwtask->deleteTaskperListId($id);
+        $gtwlist = new GatewayList($con);
+        $gtwlist->deleteList($id);
     }
 
     static function DoneTask($con, $id){
