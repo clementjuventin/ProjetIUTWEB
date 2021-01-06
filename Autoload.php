@@ -16,7 +16,7 @@ class Autoload
 
     private static function _autoload($class){
         $filename = $class.'.php';
-        $dir = array('config/','controleur/','database/','database/gateway/','model/','model/metier/','Factory/');
+        $dir = array('config/','controleur/','database/','gateway/','model/','model/metier/','factory/');
         foreach ($dir as $d){
             $file = './'.$d.$filename;
             if(file_exists($file)){

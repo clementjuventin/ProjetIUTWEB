@@ -154,10 +154,4 @@ class UserControler
         require ($this->vues['toDoList']['url']);
         require ($this->vues['footer']['url']);
     }
-    function Session($login, $password){
-        session_start();
-        $this->user = new User($login, $password);
-
-        $_SESSION['user'] = $this->user;
-    }
 }
