@@ -121,10 +121,12 @@ class PublicControler
         }
     }
     function pushList() {
+        
         $list = new Liste($_POST['title'],0,'',true);
         Validation::fil_Liste($list,$this->dataVueErreur);
 
         TaskModel::PushListe($this->connexion,$list);
+
 
         $this->displayInterface();
     }
