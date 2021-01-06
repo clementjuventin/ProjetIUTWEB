@@ -59,7 +59,7 @@ class PublicControler
                     $this->SignIn($_POST['login'], $_POST['password']);
                     if(isset($_SESSION['user'])){
                         $_SESSION['role'] = 'user';
-                        header('Location: index.php');
+                        $this->displayInterface();
                     }
                     break;
                 case "signUpRedirect":
@@ -71,7 +71,7 @@ class PublicControler
                 case "logOut":
                     session_unset();
                     session_destroy();
-                    header('Location: index.php');
+                    $this->Reinit();
                     break;
                 default:
                     $this->dataVueErreur['action'] = "Action non prise en compte par le controleur";
@@ -115,7 +115,7 @@ class PublicControler
             $task = new Task($_POST['title'],$_POST['comment'],$_POST['listLabel'],$_POST['color'],0,0);
             Validation::fil_Task($task,$this->dataVueErreur);
             TaskModel::PushTask($this->connexion,$task);
-            header('Location: index.php');
+            $this->displayInterface();
         }catch (Exception $e){
             $this->initAddTask();
         }
@@ -126,7 +126,7 @@ class PublicControler
 
         TaskModel::PushListe($this->connexion,$list);
 
-        header('Location: index.php');
+        $this->displayInterface();
     }
 
     function deleteTask() {
@@ -134,7 +134,7 @@ class PublicControler
         if(Validation::valId($_POST['id'],$this->dataVueErreur))
         TaskModel::DeleteTask($this->connexion,$_POST['id']);
 
-        header('Location: index.php');
+        $this->displayInterface();
     }
 
     function deleteList() {
@@ -142,7 +142,7 @@ class PublicControler
         if(Validation::valId($_POST['id'],$this->dataVueErreur))
         TaskModel::DeleteList($this->connexion,$_POST['id']);
 
-        header('Location: index.php');
+        $this->displayInterface();
     }
 
     function doneTask() {
@@ -150,7 +150,7 @@ class PublicControler
         if(Validation::valId($_POST['id'],$this->dataVueErreur))
         TaskModel::DoneTask($this->connexion,$_POST['id']);
 
-        header('Location: index.php');
+        $this->displayInterface();
     }
 
     function displayInterface(){

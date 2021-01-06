@@ -53,7 +53,7 @@ class UserControler
                 case "logOut":
                     session_unset();
                     session_destroy();
-                    header('Location: index.php');
+                    $this->Reinit();
                     break;
                 default:
                     $this->dataVueErreur['action'] = "Action non prise en compte par le controleur";
@@ -89,12 +89,17 @@ class UserControler
     }
 
     function pushTask() {
-        $task = new Task($_POST['title'],$_POST['comment'],$_POST['listLabel'],$_POST['color'],0,0);
-        Validation::fil_Task($task,$this->dataVueErreur);
-
-        TaskModel::PushTask($this->connexion,$task);
-
-        header('Location: index.php');
+        if(!isset($_POST['listLabel'])){
+            $_POST['listLabel']="";
+        }
+        try{
+            $task = new Task($_POST['title'],$_POST['comment'],$_POST['listLabel'],$_POST['color'],0,0);
+            Validation::fil_Task($task,$this->dataVueErreur);
+            TaskModel::PushTask($this->connexion,$task);
+            $this->displayInterface();
+        }catch (Exception $e){
+            $this->initAddTask();
+        }
     }
 
     function pushList() {
@@ -103,7 +108,7 @@ class UserControler
 
         TaskModel::PushListe($this->connexion,$list);
 
-        header('Location: index.php');
+        $this->displayInterface();
     }
 
     function deleteTask() {
@@ -111,7 +116,13 @@ class UserControler
         if(Validation::valId($_POST['id'],$this->dataVueErreur))
         TaskModel::DeleteTask($this->connexion,$_POST['id']);
 
-        header('Location: index.php');
+        $this->displayInterface();
+    }
+
+    function Reinit(){
+        require($this->vues['head']['url']);
+        require($this->vues['login']['url']);
+        require($this->vues['footer']['url']);
     }
 
     function deleteList() {
@@ -119,7 +130,7 @@ class UserControler
         if(Validation::valId($_POST['id'],$this->dataVueErreur))
         TaskModel::DeleteList($this->connexion,$_POST['id']);
 
-        header('Location: index.php');
+        $this->displayInterface();
     }
     
 
@@ -128,7 +139,7 @@ class UserControler
         if(Validation::valId($_POST['id'],$this->dataVueErreur))
         TaskModel::DoneTask($this->connexion,$_POST['id']);
 
-        header('Location: index.php');
+        $this->displayInterface();
     }
 
     function displayInterface(){
