@@ -25,27 +25,3 @@ $cont['UserCont']=array('url'=> __DIR__ . '\..\controleur\UserControler.php');
 $cont['frontCont']=array('url'=>__DIR__.'\..\controleur\FrontControler.php');
 $cont['PublicCont']=array('url'=>__DIR__.'\..\controleur\PublicControler.php');
 
-//Classes
-
-require_once('./Autoload.php');
-Autoload::charge();
-
-
-require_once(__DIR__ . '\Validation.php');
-
-require_once(__DIR__ . '\..\controleur\PublicControler.php');
-require_once(__DIR__ . '\..\controleur\UserControler.php');
-
-require_once(__DIR__ . '\..\dataBase\Connexion.php');
-require_once(__DIR__ . '\..\dataBase\gateway\GatewayTask.php');
-require_once(__DIR__ . '\..\dataBase\gateway\GatewayUser.php');
-require_once(__DIR__ . '\..\dataBase\gateway\GatewayList.php');
-
-require_once(__DIR__ . '\..\model\metier\Task.php');
-require_once(__DIR__ . '\..\model\metier\User.php');
-require_once(__DIR__ . '\..\model\metier\Liste.php');
-
-require_once(__DIR__ . '\..\model\TaskModel.php');
-require_once(__DIR__ . '\..\model\UserModel.php');
-require_once(__DIR__ . '\..\model\ViewModel.php');
-

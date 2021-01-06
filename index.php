@@ -1,5 +1,5 @@
 <?php
-    require_once(__DIR__.'\controleur/FrontControler.php');
-    
+    require_once('./Autoload.php');
+    Autoload::charge();
     new FrontControler();
 ?>
