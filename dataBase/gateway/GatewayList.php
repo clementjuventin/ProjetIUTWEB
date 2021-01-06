@@ -24,12 +24,7 @@ class GatewayList
 
         $results = $this->connexion->getResults();
 
-        $final = array();
-        foreach ($results as $res){
-            $final[] = new Liste($res['label'],$res['listId'],$res['user'],$res['isPublic']);
-        }
-
-        return $final;
+        return Factory::makeList($results, "sql");
     }
     public function deleteList($listId){
         $query="DELETE FROM list WHERE listId=:listId;";
@@ -44,12 +39,8 @@ class GatewayList
 
         $results = $this->connexion->getResults();
 
-        $final = array();
-        foreach ($results as $res){
-            $final[] = new Liste($res['label'],$res['listId'],$res['user'],$res['isPublic']);
-        }
 
-        return $final;
+        return Factory::makeList($results, "sql");
     }
 
     public function pushList(Liste $list){

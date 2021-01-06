@@ -24,11 +24,9 @@ class GatewayTask
 
         $results = $this->connexion->getResults();
 
-        $final = array();
-        foreach ($results as $res){
-            $final[] = new Task($res['title'],$res['description'],$id,$res['color'],$res['id'],$res['isDone']);
-        }
-        return $final;
+        $results['idL']=$id;
+
+        return Factory::makeTask($results,"sql");
     }
 
     public function pushTask(Task $task){
