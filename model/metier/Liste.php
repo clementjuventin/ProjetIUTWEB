@@ -94,8 +94,6 @@ class Liste
         return $this->isPublic;
     }
 
-
-
     public function addToList($task){
         foreach ($task as $t){
             $this->taskArray[]=$t;

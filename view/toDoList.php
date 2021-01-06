@@ -22,12 +22,12 @@
             <?php
             $num = 0;
             foreach ($list as $lis){
-            
+                $logo = $lis->isPublic()?'<i class="fas fa-lock-open"></i>':'<i class="fas fa-key"></i>';
                 echo '<div class="card">
                             <div class="card-header" id="headingOne">
                                 <h5 class="mb-0">
                                     <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        '.$lis->getLabel().'
+                                        '.$logo.' '.$lis->getLabel().' 
                                         <form method="POST" style="display: inline-block;">
                                         <button type="submit"  name="action" value="delList" class="btn btn-danger" style="width: 2.5em"><i class="fas fa-times"></i></button>
                                         <input type="hidden" name="id" value="'.$lis->getId().'">
@@ -43,9 +43,9 @@
                                 <table class="table table-hover">
                                 <thead>
                                 <tr>
-                                    <th scope="col"><i class="fas fa-key"></i></th>
                                     <th scope="col"><i class="fas fa-thumbtack"></i> T&acirc;che</th>
                                     <th scope="col"><i class="fas fa-comment-dots"></i> Commentaire</th>
+                                    <th scope="col"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
