@@ -50,14 +50,6 @@ class Validation {
         }
         $task->setTitre(filter_var($tmp, FILTER_SANITIZE_STRING));
 
-
-        $tmp = $task->getId();
-        if(!isset($tmp)){
-            $dataVueErreur['ListId'] = "[ERR] ListeId";
-            
-        }
-        $task->setId(filter_var($tmp, FILTER_SANITIZE_NUMBER_INT));
-
         $tmp = $task->getDescription();
         if(!isset($tmp)){
             $dataVueErreur['Description'] = "[ERR] Description";
@@ -69,6 +61,13 @@ class Validation {
             $dataVueErreur['Color'] = "[ERR] Color";
         }
         $task->setColor(filter_var($tmp, FILTER_SANITIZE_STRING));
+
+        $tmp = $task->getListId();
+        if(!isset($tmp)||$tmp==""){
+            $dataVueErreur['ListId'] = "[ERR] Aucun id n'a été entré pour la liste";
+            throw new Exception("Invalid parameter");
+        }
+        $task->setId(filter_var($tmp, FILTER_SANITIZE_STRING));
     }
 
      static function fil_Liste(Liste &$list,&$dataVueErreur){

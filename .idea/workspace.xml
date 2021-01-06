@@ -75,7 +75,9 @@
       <workItem from="1608301237476" duration="12050000" />
       <workItem from="1609600144108" duration="2247000" />
       <workItem from="1609671670840" duration="6642000" />
-      <workItem from="1609778227269" duration="250000" />
+      <workItem from="1609778227269" duration="1260000" />
+      <workItem from="1609855569191" duration="790000" />
+      <workItem from="1609929722523" duration="5743000" />
     </task>
     <servers />
   </component>
@@ -96,6 +98,10 @@
     </state>
     <state x="-1047" y="219" key="#com.intellij.ide.util.MemberChooser/0.0.1680.1020/-1680.0.1680.1020@-1680.0.1680.1020" timestamp="1606647654045" />
     <state x="633" y="219" key="#com.intellij.ide.util.MemberChooser/0.0.1680.1020/-1680.0.1680.1020@0.0.1680.1020" timestamp="1608302575823" />
+    <state x="688" y="327" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1609939195824">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="688" y="327" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1680.1020@0.0.1680.1020" timestamp="1609939195824" />
     <state x="-1110" y="257" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605923429075">
       <screen x="-1680" y="0" width="1680" height="1020" />
     </state>
@@ -106,21 +112,23 @@
     </state>
     <state x="-835" y="277" key="FileChooserDialogImpl/0.0.1680.1020/-1680.0.1680.1020@-1680.0.1680.1020" timestamp="1608206892913" />
     <state x="620" y="265" key="FileChooserDialogImpl/0.0.1680.1020/-1680.0.1680.1020@0.0.1680.1020" timestamp="1608110933752" />
-    <state x="-1052" y="233" key="NewPhpClassDialog" timestamp="1608310646450">
-      <screen x="-1680" y="0" width="1680" height="1020" />
+    <state x="628" y="233" key="NewPhpClassDialog" timestamp="1609939174171">
+      <screen x="0" y="0" width="1680" height="1020" />
     </state>
     <state x="-1052" y="233" key="NewPhpClassDialog/0.0.1680.1020/-1680.0.1680.1020@-1680.0.1680.1020" timestamp="1608310646450" />
     <state x="628" y="233" key="NewPhpClassDialog/0.0.1680.1020/-1680.0.1680.1020@0.0.1680.1020" timestamp="1608303611984" />
+    <state x="628" y="233" key="NewPhpClassDialog/0.0.1680.1020@0.0.1680.1020" timestamp="1609939174171" />
     <state x="-940" y="323" key="NewPhpFileDialog" timestamp="1608311024962">
       <screen x="-1680" y="0" width="1680" height="1020" />
     </state>
     <state x="-940" y="323" key="NewPhpFileDialog/0.0.1680.1020/-1680.0.1680.1020@-1680.0.1680.1020" timestamp="1608311024962" />
     <state x="674" y="433" key="NewPhpFileDialog/0.0.1680.1020/-1680.0.1680.1020@0.0.1680.1020" timestamp="1608303758002" />
-    <state x="-1163" y="-22" width="1461" height="1007" maximized="true" key="dock-window-1" timestamp="1609778328365">
-      <screen x="-1680" y="0" width="1680" height="1020" />
+    <state x="370" y="124" width="1268" height="1007" key="dock-window-1" timestamp="1609937399946">
+      <screen x="0" y="0" width="1680" height="1020" />
     </state>
     <state x="219" y="-13" width="1243" height="1007" maximized="true" key="dock-window-1/0.0.1680.1020/-1680.0.1680.1020@-1680.0.1680.1020" timestamp="1606881574519" />
     <state x="-1163" y="-22" width="1461" height="1007" maximized="true" key="dock-window-1/0.0.1680.1020/-1680.0.1680.1020@0.0.1680.1020" timestamp="1609778328365" />
+    <state x="370" y="124" width="1268" height="1007" key="dock-window-1/0.0.1680.1020@0.0.1680.1020" timestamp="1609937399946" />
     <state x="-1548" y="99" width="1461" height="1007" key="dock-window-2" timestamp="1609682118735">
       <screen x="-1680" y="0" width="1680" height="1020" />
     </state>

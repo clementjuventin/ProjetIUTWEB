@@ -22,13 +22,10 @@ class UserControler
         if (isset($_REQUEST['action'])) {
             $action = $_REQUEST['action'];
         } else {
-            $action = 'signIn';
+            $action = 'displayTask';
         }
         try {
             switch ($action) {
-                case "signIn":
-                    $this->displayInterface();
-                    break;
                 case "displayTask":
                     $this->displayInterface();
                     break;

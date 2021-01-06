@@ -21,6 +21,16 @@
             <div class="form-group">
                 <textarea class="form-control" id="comment" rows="3" name="comment" placeholder="Commentaire"></textarea>
             </div>
+            <span style="color: #b32323;">
+            <?php
+            if(isset($this->dataVueErreur)){
+                if(isset($this->dataVueErreur['ListId'])){
+                    echo "Veuillez choisir une liste valide pour assigner la nouvelle t&acirc;che.";
+                    $this->dataVueErreur['ListId'] = NULL;
+                }
+            }
+            ?>
+            </span>
             <div class="form-group" style="display: flex;">
                 <select name="listLabel" class="custom-select my-1 mr-sm-2" id="listLabel">
                     <?php

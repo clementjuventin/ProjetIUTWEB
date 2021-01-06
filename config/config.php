@@ -26,6 +26,11 @@ $cont['frontCont']=array('url'=>__DIR__.'\..\controleur\FrontControler.php');
 $cont['PublicCont']=array('url'=>__DIR__.'\..\controleur\PublicControler.php');
 
 //Classes
+
+require_once('./Autoload.php');
+Autoload::charge();
+
+
 require_once(__DIR__ . '\Validation.php');
 
 require_once(__DIR__ . '\..\controleur\PublicControler.php');

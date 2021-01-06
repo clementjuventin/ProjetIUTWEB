@@ -22,13 +22,12 @@ class PublicControler
         if (isset($_REQUEST['action'])) {
             $action = $_REQUEST['action'];
         } else {
-            $action = 'public';
+            $action = 'null';
         }
         try {
             switch ($action) {
                 case "public":
-                    $this->displayInterface();
-                    break;
+                    $_SESSION['role'] = 'public';
                 case "displayTask":
                     $this->displayInterface();
                     break;
@@ -49,11 +48,26 @@ class PublicControler
                     break; 
                 case "delList":
                     $this->deleteList();
-                        break;     
+                    break;
                 case "doneTask":
                     $this->doneTask();
-                    break; 
-                       
+                    break;
+                case "null":
+                    $this->Reinit();
+                    break;
+                case "signIn":
+                    $this->SignIn($_POST['login'], $_POST['password']);
+                    if(isset($_SESSION['user'])){
+                        $_SESSION['role'] = 'user';
+                        header('Location: index.php');
+                    }
+                    break;
+                case "signUpRedirect":
+                    $this->SignUpRedirect();
+                    break;
+                case "signUp":
+                    $this->SignUp($_POST['login'], $_POST['password'], $_POST['cpassword']);
+                    break;
                 case "logOut":
                     session_unset();
                     session_destroy();
@@ -72,7 +86,6 @@ class PublicControler
             $this->dataVueErreur["Exception"] = $e2->getMessage();
             require($this->vues['head']['url']);
             require($this->vues['erreur']['url']);
-            var_dump($_REQUEST['action']);
         }
         exit(0);
     }
@@ -95,12 +108,17 @@ class PublicControler
     }
 
     function pushTask() {
-        $task = new Task($_POST['title'],$_POST['comment'],$_POST['listLabel'],$_POST['color'],0,0);
-        Validation::fil_Task($task,$this->dataVueErreur);
-
-        TaskModel::PushTask($this->connexion,$task);
-
-        header('Location: index.php');
+        if(!isset($_POST['listLabel'])){
+            $_POST['listLabel']="";
+        }
+        try{
+            $task = new Task($_POST['title'],$_POST['comment'],$_POST['listLabel'],$_POST['color'],0,0);
+            Validation::fil_Task($task,$this->dataVueErreur);
+            TaskModel::PushTask($this->connexion,$task);
+            header('Location: index.php');
+        }catch (Exception $e){
+            $this->initAddTask();
+        }
     }
     function pushList() {
         $list = new Liste($_POST['title'],0,'',true);
@@ -135,7 +153,6 @@ class PublicControler
         header('Location: index.php');
     }
 
-
     function displayInterface(){
         $list = TaskModel::PullList($this->connexion,true, '');
         foreach ($list as $l){
@@ -146,8 +163,41 @@ class PublicControler
         require ($this->vues['toDoList']['url']);
         require ($this->vues['footer']['url']);
     }
+    function SignIn($login,$password) {
+        Validation::val_SignIn($login,$password,$this->dataVueErreur);
+
+        $bool = UserModel::SignIn($this->connexion,$login,$password,$this->dataVueErreur);
+
+        if($bool){
+            $this->Session($login, $password);
+        }else{
+            $this->dataVueErreur['Login']="Probl&egrave;me lors de l'identification";
+            $this->Reinit();
+        }
+    }
+    function SignUp($login,$password,$cpassword) {
+
+        $bool=false;
+        if(Validation::val_SignUp($login,$password,$cpassword,$this->dataVueErreur)){
+            $bool = UserModel::SignUp($this->connexion,$login,$password,$this->dataVueErreur);
+        }
+        if($bool){
+            require($this->vues['head']['url']);
+            require($this->vues['login']['url']);
+        }else{
+            $this->SignUpRedirect();
+        }
+    }
+    function SignUpRedirect(){
+        require($this->vues['head']['url']);
+        require($this->vues['signUp']['url']);
+    }
+    function Reinit(){
+        require($this->vues['head']['url']);
+        require($this->vues['login']['url']);
+        require($this->vues['footer']['url']);
+    }
     function Session($login, $password){
-        session_start();
         $this->user = new User($login, $password);
 
         $_SESSION['user'] = $this->user;
