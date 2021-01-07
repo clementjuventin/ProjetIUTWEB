@@ -27,7 +27,7 @@
                             <div class="card-header" id="headingOne">
                                 <h5 class="mb-0">
                                     <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        '.$logo.' '.$lis->getLabel().' 
+                                        '.$logo.'<span style = "margin-left:1vh;"> '.$lis->getLabel().' </span>
                                         <form method="POST" style="display: inline-block;">
                                         <button type="submit"  name="action" value="delList" class="btn btn-danger" style="width: 2.5em"><i class="fas fa-times"></i></button>
                                         <input type="hidden" name="id" value="'.$lis->getId().'">
@@ -53,16 +53,19 @@
                 $num = $num+1;
                 foreach ($lis->getTaskArray() as $t){
 
-                    $validButton = $t->isDone()?'':'<form method="POST" style="display: inline-block; margin-left: 4px;">
-                        <button id="yolo" type="submit"  name="action" value="doneTask" class="btn btn-success" style="width: 2.5em"><i class="fas fa-check"></i></button>
-                        <input type="hidden" name="id" value="'.$t->getId().'">
-                        </form>';
-
                     $settings = '
+                       
+
                         <form method="POST" style="display: inline-block;">
                         <button type="submit"  name="action" value="delTask" class="btn btn-danger" style="width: 2.5em"><i class="fas fa-times"></i></button>
                         <input type="hidden" name="id" value="'.$t->getId().'">
-                        </form>'.$validButton;
+                        </form>
+                    
+                        <form method="POST" style="display: inline-block;">
+                        <button id="yolo" type="submit"  name="action" value="doneTask" class="btn btn-success" style="width: 2.5em"><i class="fas fa-check"></i></button>
+                        <input type="hidden" name="id" value="'.$t->getId().'">
+                        </form>
+                    ';
                  
 
                     echo '<tr class="'.$t->isDone().'" style="background-color: '.$t->getColor().';">

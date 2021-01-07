@@ -24,7 +24,6 @@ class GatewayTask
 
         $results = $this->connexion->getResults();
 
-        $results['idL']=$id;
 
         return Factory::makeTask($results,"sql");
     }
