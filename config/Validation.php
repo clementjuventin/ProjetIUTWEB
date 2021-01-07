@@ -16,7 +16,7 @@ class Validation {
             return false;
         }
         if(strlen($passwd)<7){
-            $dataVueErreur['Password'] = "La longueur du mot de passe doit &ecirc;tre sup&eacute;rieure &egrave; 7 caract&egrave;res.";
+            $dataVueErreur['Password'] = "La longueur du mot de passe doit &ecirc;tre sup&eacute;rieure &agrave; 7 caract&egrave;res.";
             return false;
         }
         if(!isset($login)||$login==""){
@@ -66,7 +66,7 @@ class Validation {
 
         $tmp = $task->getListId();
         if(!isset($tmp)||$tmp==""){
-            $dataVueErreur['ListId'] = "[ERR] Aucun id n'a été entré pour la liste";
+            $dataVueErreur['ListId'] = "[ERR] Aucun id n'a ï¿½tï¿½ entrï¿½ pour la liste";
             throw new Exception("Invalid parameter");
         }
         $task->setId(filter_var($tmp, FILTER_SANITIZE_STRING));

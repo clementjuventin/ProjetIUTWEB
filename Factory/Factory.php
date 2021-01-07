@@ -6,14 +6,14 @@ class Factory
     public static function makeTask($results,$param){
         switch ($param){
             case "sql":
-                $idL = array_pop($results);
+               
                 $final = array();
                 foreach ($results as $res){
-                    $final[] = new Task($res['title'],$res['description'],$idL,$res['color'],$res['id'],$res['isDone']);
+                    $final[] = new Task($res['title'],$res['description'],$res['listId'],$res['color'],$res['id'],$res['isDone']);
                 }
                 return $final;
             default:
-                throw new Exception(__CLASS__." : Paramètre ".$param." inconnu.");
+                throw new Exception(__CLASS__." : Paramï¿½tre ".$param." inconnu.");
         }
     }
     public static function makeList($results,$param){
@@ -25,7 +25,7 @@ class Factory
                 }
                 return $final;
             default:
-                throw new Exception(__CLASS__." : Paramètre ".$param." inconnu.");
+                throw new Exception(__CLASS__." : Paramï¿½tre ".$param." inconnu.");
         }
     }
 }
