@@ -59,7 +59,7 @@ class PublicControler
                     $this->SignIn($_POST['login'], $_POST['password']);
                     if(isset($_SESSION['user'])){
                         $_SESSION['role'] = 'user';
-                        $this->displayInterface();
+                        new UserControler($vues,$base,$login,$mdp);
                     }
                     break;
                 case "signUpRedirect":
@@ -71,6 +71,7 @@ class PublicControler
                 case "logOut":
                     session_unset();
                     session_destroy();
+                    $_REQUEST['action']=NULL;
                     $this->Reinit();
                     break;
                 default:

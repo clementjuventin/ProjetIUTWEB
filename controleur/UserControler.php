@@ -26,6 +26,7 @@ class UserControler
         }
         try {
             switch ($action) {
+                case "signIn":
                 case "displayTask":
                     $this->displayInterface();
                     break;
